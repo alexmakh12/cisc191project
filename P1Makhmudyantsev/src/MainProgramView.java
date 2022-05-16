@@ -85,7 +85,8 @@ public class MainProgramView extends JFrame
 		firstPanel.add(firstProgramInstructions);
 		firstPanel.add(secondProgramInstructions);
 
-		userStateSelection = new JComboBox(states);
+		userStateSelection = new JComboBox(UnitedStatesStates.readWebsite(
+				"https://gist.githubusercontent.com/iamjason/8f8f4bc00c13de86bcad/raw/338c1c9faafde0cd274d531e657a262df1dd5963/us-states-array"));
 		userStateSelection.addItemListener(
 				new UserStateSlectionListener(userStateSelection, this));
 		userStateSelection.setSize(1, 10);
@@ -110,8 +111,10 @@ public class MainProgramView extends JFrame
 		policeIncidentRadioTypeButton = new JRadioButton("Police");
 		policeIncidentRadioTypeButton.setEnabled(false);
 		policeIncidentRadioTypeButton.addActionListener(
-				new PoliceRadioButtonListener(policeIncidentRadioTypeButton, this));
-		policeAndFireIncidenTypeRadioButton = new JRadioButton("Police And Fire");
+				new PoliceRadioButtonListener(policeIncidentRadioTypeButton,
+						this));
+		policeAndFireIncidenTypeRadioButton = new JRadioButton(
+				"Police And Fire");
 		policeAndFireIncidenTypeRadioButton.setEnabled(false);
 		ButtonGroup group = new ButtonGroup();
 		group.add(policeAndFireIncidenTypeRadioButton);
@@ -179,5 +182,4 @@ public class MainProgramView extends JFrame
 	{
 		new MainProgramView();
 	}
-
 }
