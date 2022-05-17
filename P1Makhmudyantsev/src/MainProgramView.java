@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -68,7 +69,7 @@ public class MainProgramView extends JFrame
 	// MainProgramView HAS-A userMonthSelection
 	JComboBox userMonthSelection;
 
-	//MainProgramView HAS-A group
+	// MainProgramView HAS-A group
 	ButtonGroup groupOfIncidentTypeRadioButtons;
 
 	// MainProgramView HAS-A panelContainer
@@ -203,7 +204,8 @@ public class MainProgramView extends JFrame
 				"Police And Fire");
 		policeAndFireIncidenTypeRadioButton.setEnabled(false);
 		groupOfIncidentTypeRadioButtons = new ButtonGroup();
-		groupOfIncidentTypeRadioButtons.add(policeAndFireIncidenTypeRadioButton);
+		groupOfIncidentTypeRadioButtons
+				.add(policeAndFireIncidenTypeRadioButton);
 		groupOfIncidentTypeRadioButtons.add(fireIncidentTypeRadioButton);
 		groupOfIncidentTypeRadioButtons.add(policeIncidentRadioTypeButton);
 
@@ -221,12 +223,19 @@ public class MainProgramView extends JFrame
 
 		sixthPanel = new JPanel();
 		userCommunitySelection = new JComboBox(community);
+		userCommunitySelection.addItemListener(
+				new UserCommunitySelectionListener(userCommunitySelection,
+						this));
 		userCommunitySelection.setEnabled(false);
 		userCallCategorySelection = new JComboBox(callCategory);
 		userCallCategorySelection.setEnabled(false);
 		userMonthSelection = new JComboBox(months);
+		userMonthSelection.addItemListener(
+				new UserMonthSelectionListener(userMonthSelection, this));
 		userMonthSelection.setEnabled(false);
 		userYearSelection = new JComboBox(years);
+		userYearSelection.addItemListener(
+				new UserYearSelectionListener(userYearSelection, this));
 		userYearSelection.setEnabled(false);
 		sixthPanel.add(userCommunitySelection);
 		sixthPanel.add(userCallCategorySelection);
@@ -271,7 +280,7 @@ public class MainProgramView extends JFrame
 	{
 		userStateSelection.setSelectedIndex(0);
 		userCitySelection.setSelectedIndex(0);
-//		userCitySelection.setEnabled(false);
+		// userCitySelection.setEnabled(false);
 		policeIncidentRadioTypeButton.setEnabled(false);
 		policeAndFireIncidenTypeRadioButton.setEnabled(false);
 		fireIncidentTypeRadioButton.setEnabled(false);
@@ -285,11 +294,37 @@ public class MainProgramView extends JFrame
 		userMonthSelection.setSelectedIndex(0);
 		userCallCategorySelection.setEnabled(false);
 		userCallCategorySelection.setSelectedIndex(0);
-		
-//		//Reset the frame fully (testing)
-//		this.dispose();
-//	    new MainProgramView();
+		getResultsButton.setEnabled(false);
 
+		// //Reset the frame fully (testing)
+		// this.dispose();
+		// new MainProgramView();
+
+	}
+
+	public void getResults()
+	{
+		checkToUpdateGetResultsButton();
+
+	}
+
+	public void checkToUpdateGetResultsButton()
+	{
+		if (userCommunitySelection.getSelectedItem() != userCommunitySelection
+				.getItemAt(0)
+				&& userMonthSelection.getSelectedItem() != userMonthSelection
+						.getItemAt(0)
+				&& userYearSelection.getSelectedItem() != userYearSelection
+						.getItemAt(0))
+		{
+			getResultsButton.setEnabled(true);
+			
+			Main.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
+					"ARJISPublicCrime030922.csv",
+					userCommunitySelection.getSelectedItem().toString(),
+					userMonthSelection.getSelectedItem().toString(),
+					userYearSelection.getSelectedItem().toString());
+		}
 	}
 
 	public static void main(String[] args)
