@@ -9,8 +9,9 @@ public class UnitedStatesStates
 
 		String state = null;
 
-//		ArrayList<String> allStatesInTheUnitedStates = new ArrayList<String>();
-		
+		// ArrayList<String> allStatesInTheUnitedStates = new
+		// ArrayList<String>();
+
 		String[] allStatesInTheUnitedStates = new String[54];
 
 		Scanner scanner = null;
@@ -23,20 +24,23 @@ public class UnitedStatesStates
 			Scanner sc = new Scanner(url.openStream());
 			while (sc.hasNext())
 			{
-				for(int index = 0; index < allStatesInTheUnitedStates.length; index++) {
+				for (int index = 0; index < allStatesInTheUnitedStates.length; index++)
+				{
 					state = sc.nextLine();
 					int indexOfFirstQuote = state.indexOf("\"", 0);
 					int indexOfSecondQuote = state.indexOf(",", 0);
-					state = state.substring(indexOfFirstQuote, indexOfSecondQuote);
+					state = state.substring(indexOfFirstQuote,
+							indexOfSecondQuote);
 					allStatesInTheUnitedStates[index] = state;
 				}
-				
-//				COULD USE AN ARRAY LIST BUT ITS NOT DYNAMICALLY SIZED?
-//				state = sc.nextLine();
-//				int indexOfFirstQuote = state.indexOf("\"", 0);
-//				int indexOfSecondQuote = state.indexOf(",", 0);
-//				state = state.substring(indexOfFirstQuote, indexOfSecondQuote);
-//				allStatesInTheUnitedStates.add(state);
+
+				// COULD USE AN ARRAY LIST BUT ITS NOT DYNAMICALLY SIZED?
+				// state = sc.nextLine();
+				// int indexOfFirstQuote = state.indexOf("\"", 0);
+				// int indexOfSecondQuote = state.indexOf(",", 0);
+				// state = state.substring(indexOfFirstQuote,
+				// indexOfSecondQuote);
+				// allStatesInTheUnitedStates.add(state);
 
 			}
 		}

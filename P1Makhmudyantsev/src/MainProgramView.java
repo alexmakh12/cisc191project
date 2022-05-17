@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,48 +11,135 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+/**
+ * Lead Author(s):
+ * 
+ * @author Alexandre Makhmudyantsev (3330002234)
+ *         <<add additional lead authors here, with a full first and last name>>
+ * 
+ *         Other contributors:
+ *         <<add additional contributors (mentors, tutors, friends) here, with
+ *         contact information>>
+ * 
+ *         References:
+ *         <<add more references here>>
+ * 
+ *         Version/date: 05/16/2022 V3.0
+ * 
+ *         Responsibilities of class:
+ *         - Creates a MainProgramView that is a JFrame
+ */
+/**
+ */
+
+// MainProgramView IS-A JFrame
 public class MainProgramView extends JFrame
 {
+	// MainProgramView HAS-A firstProgramInstrucitons
 	JLabel firstProgramInstructions;
+
+	// MainProgramView HAS-A secondProgramInstructions
 	JLabel secondProgramInstructions;
+
+	// MainProgramView HAS-A thirdProgramInstructions
 	JLabel thirdProgramInstructions;
+
+	// MainProgramView HAS-A creatorSignature
 	JLabel creatorSignature;
+
+	// MainProgramView HAS-A userStateSelection
 	JComboBox userStateSelection;
+
+	// MainProgramView HAS-A userCitySelection
 	JComboBox userCitySelection;
+
+	// MainProgramView HAS-A userQuestionSeleciton
 	JComboBox userQuestionSelection;
+
+	// MainProgramView HAS-A userCommunitySelection
 	JComboBox userCommunitySelection;
+
+	// MainProgramView HAS-A userCallCategorySelection
 	JComboBox userCallCategorySelection;
+
+	// MainProgramView HAS-A userYearSeleciton
 	JComboBox userYearSelection;
+
+	// MainProgramView HAS-A userMonthSelection
 	JComboBox userMonthSelection;
+
+	//MainProgramView HAS-A group
+	ButtonGroup groupOfIncidentTypeRadioButtons;
+
+	// MainProgramView HAS-A panelContainer
 	JPanel panelContainer;
+
+	// MainProgramView HAS-A firstPanel
 	JPanel firstPanel;
+
+	// MainProgramView HAS-A secondPanel
 	JPanel secondPanel;
+
+	// MainProgramView HAS-A thirdPanel
 	JPanel thirdPanel;
+
+	// MainProgramView HAS-A fourthPanel
 	JPanel fourthPanel;
+
+	// MainProgramView HAS-A fifthPanel
 	JPanel fifthPanel;
+
+	// MainProgramView HAS-A sixthPanel
 	JPanel sixthPanel;
+
+	// MainProgramView HAS-A seventhPanel
 	JPanel seventhPanel;
+
+	// MainProgramView HAS-A eightPanel
 	JPanel eigthPanel;
-	JRadioButton fireIncidetTypeRadioButton;
+
+	// MainProgramView fireIncidetTypeRadioButton
+	JRadioButton fireIncidentTypeRadioButton;
+
+	// MainProgramView policeIncidentRadioTypeButton
 	JRadioButton policeIncidentRadioTypeButton;
+
+	// MainProgramView policeAndFireIncidenTypeRadioButton
 	JRadioButton policeAndFireIncidenTypeRadioButton;
+
+	// MainProgramView getResultsButton
 	JButton getResultsButton;
+
+	// MainProgramView resetButton
 	JButton resetButton;
 
+	// MainProgramView states
 	String[] states = { "Select a State", "California", };
+
+	// MainProgramView cities
 	String[] cities = { "Select a City", "San Diego" };
+
+	// MainProgramView defaultUserQuestion
 	String[] defaultUserQuesiton = { "Select Incident Type" };
-	String[] month = { "Select a Date" };
-	String[] year = { "Select a Year" };
-	String[] callCategory = { "Select a Call Category" };
-	String[] community = { "Select a Community" };
+
+	// MainProgramView month
+	String[] months = { "Select a month", "1", "2" };
+
+	// MainProgramView year
+	String[] years = { "Select a year", "2022" };
+
+	// MainProgramView callCategory
+	String[] callCategory = { "Select a Call Category", "Non-Urgent" };
+
+	// MainProgramView community
+	String[] community = { "Select a Community", "92126" };
 
 	public MainProgramView()
 	{
 
 		setTitle("Police and Fire Data Parser");
 
-		setSize(700, 500);
+		setSize(1000, 500);
 
 		firstProgramInstructions = new JLabel();
 		firstProgramInstructions.setText("Select a state and a city to being");
@@ -104,10 +190,10 @@ public class MainProgramView extends JFrame
 		thirdPanel = new JPanel();
 		thirdPanel.add(thirdProgramInstructions);
 
-		fireIncidetTypeRadioButton = new JRadioButton("Fire");
-		fireIncidetTypeRadioButton.setEnabled(false);
-		fireIncidetTypeRadioButton.addActionListener(
-				new FireRadioButtonListener(fireIncidetTypeRadioButton, this));
+		fireIncidentTypeRadioButton = new JRadioButton("Fire");
+		fireIncidentTypeRadioButton.setEnabled(false);
+		fireIncidentTypeRadioButton.addActionListener(
+				new FireRadioButtonListener(fireIncidentTypeRadioButton, this));
 		policeIncidentRadioTypeButton = new JRadioButton("Police");
 		policeIncidentRadioTypeButton.setEnabled(false);
 		policeIncidentRadioTypeButton.addActionListener(
@@ -116,13 +202,13 @@ public class MainProgramView extends JFrame
 		policeAndFireIncidenTypeRadioButton = new JRadioButton(
 				"Police And Fire");
 		policeAndFireIncidenTypeRadioButton.setEnabled(false);
-		ButtonGroup group = new ButtonGroup();
-		group.add(policeAndFireIncidenTypeRadioButton);
-		group.add(fireIncidetTypeRadioButton);
-		group.add(policeIncidentRadioTypeButton);
+		groupOfIncidentTypeRadioButtons = new ButtonGroup();
+		groupOfIncidentTypeRadioButtons.add(policeAndFireIncidenTypeRadioButton);
+		groupOfIncidentTypeRadioButtons.add(fireIncidentTypeRadioButton);
+		groupOfIncidentTypeRadioButtons.add(policeIncidentRadioTypeButton);
 
 		fourthPanel = new JPanel();
-		fourthPanel.add(fireIncidetTypeRadioButton);
+		fourthPanel.add(fireIncidentTypeRadioButton);
 		fourthPanel.add(policeIncidentRadioTypeButton);
 		fourthPanel.add(policeAndFireIncidenTypeRadioButton);
 
@@ -138,9 +224,9 @@ public class MainProgramView extends JFrame
 		userCommunitySelection.setEnabled(false);
 		userCallCategorySelection = new JComboBox(callCategory);
 		userCallCategorySelection.setEnabled(false);
-		userMonthSelection = new JComboBox(month);
+		userMonthSelection = new JComboBox(months);
 		userMonthSelection.setEnabled(false);
-		userYearSelection = new JComboBox(year);
+		userYearSelection = new JComboBox(years);
 		userYearSelection.setEnabled(false);
 		sixthPanel.add(userCommunitySelection);
 		sixthPanel.add(userCallCategorySelection);
@@ -152,6 +238,9 @@ public class MainProgramView extends JFrame
 		getResultsButton.setText("Get Results");
 		resetButton = new JButton();
 		resetButton.setText("Reset");
+		getResultsButton.setEnabled(false);
+		resetButton
+				.addActionListener(new ResetButtonListener(resetButton, this));
 		seventhPanel.add(resetButton);
 		seventhPanel.add(getResultsButton);
 
@@ -178,8 +267,34 @@ public class MainProgramView extends JFrame
 
 	}
 
+	public void resetProgram()
+	{
+		userStateSelection.setSelectedIndex(0);
+		userCitySelection.setSelectedIndex(0);
+//		userCitySelection.setEnabled(false);
+		policeIncidentRadioTypeButton.setEnabled(false);
+		policeAndFireIncidenTypeRadioButton.setEnabled(false);
+		fireIncidentTypeRadioButton.setEnabled(false);
+		userQuestionSelection.setEnabled(false);
+		userQuestionSelection.setSelectedIndex(0);
+		userCommunitySelection.setEnabled(false);
+		userCommunitySelection.setEnabled(false);
+		userYearSelection.setEnabled(false);
+		userYearSelection.setSelectedIndex(0);
+		userMonthSelection.setEnabled(false);
+		userMonthSelection.setSelectedIndex(0);
+		userCallCategorySelection.setEnabled(false);
+		userCallCategorySelection.setSelectedIndex(0);
+		
+//		//Reset the frame fully (testing)
+//		this.dispose();
+//	    new MainProgramView();
+
+	}
+
 	public static void main(String[] args)
 	{
+
 		new MainProgramView();
 	}
 }
