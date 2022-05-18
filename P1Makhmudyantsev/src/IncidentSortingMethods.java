@@ -24,7 +24,7 @@
  *         - 04/18/2022
  * 
  *         Responsibilities of class:
- *         -Read files and create objects of the Crime Incident tyoe and Fire
+ *         -Read files and create objects of the Crime Incideant tyoe and Fire
  *         Incident Type in an array
  *         - Iterate though arrays and incident objects for desired result based
  *         on method and parameter
@@ -50,7 +50,8 @@ public class IncidentSortingMethods
 	 * @param fileName
 	 * @return fireIncidents
 	 */
-	public static ArrayList<FireIncident> readAndLoadFireIncidentData(String fileName)
+	public static ArrayList<FireIncident> readAndLoadFireIncidentData(
+			String fileName)
 	{
 
 		// Try...
@@ -103,8 +104,8 @@ public class IncidentSortingMethods
 				 * using
 				 * FireIncident constructor
 				 */
-				fireIncidents.add(new FireIncident(day, month,
-						year, zipCode, callCategory));
+				fireIncidents.add(new FireIncident(day, month, year, zipCode,
+						callCategory));
 
 				/**
 				 * Incriment incidentNumber by one for the next incident in the
@@ -136,7 +137,8 @@ public class IncidentSortingMethods
 	 * @param fileName
 	 * @return array
 	 */
-	public static ArrayList<CrimeIncident> readAndLoadCrimeIncidentData(String fileName)
+	public static ArrayList<CrimeIncident> readAndLoadCrimeIncidentData(
+			String fileName)
 	{
 		try
 		{
@@ -172,6 +174,8 @@ public class IncidentSortingMethods
 				 * comma's in it which need to be skipped which is why a regular
 				 * expression function us used.
 				 */
+
+		
 				String[] data = result
 						.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
 
@@ -191,8 +195,8 @@ public class IncidentSortingMethods
 				 * In the incidents array create a new incident object using
 				 * CrimeIncident constructor
 				 */
-				crimeIncidents.add(new CrimeIncident(date,
-						zipCode, community, callCategory));
+				crimeIncidents.add(new CrimeIncident(date, zipCode, community,
+						callCategory));
 
 				/**
 				 * Incriment incidentNumber by one for the next incident in the
@@ -228,10 +232,10 @@ public class IncidentSortingMethods
 	 * @param incidentType
 	 * @return count
 	 * 
-	 * KEEP
+	 *         KEEP
 	 */
-	public static int countNumberOfFireIncidentTypeForAGivenYear(String fileName, String yearInput,
-			String incidentType)
+	public static int countNumberOfFireIncidentTypeForAGivenYear(
+			String yearInput, String incidentType)
 	{
 		// Initialize count to use as a counter
 		int count = 0;
@@ -239,11 +243,11 @@ public class IncidentSortingMethods
 		// Try...
 		try
 		{
-			/**
-			 * Call readAndLoadFireIncidentData on the file passed as a
-			 * parameter
-			 */
-			readAndLoadFireIncidentData(fileName);
+			// /**
+			// * Call readAndLoadFireIncidentData on the file passed as a
+			// * parameter
+			// */
+			// readAndLoadFireIncidentData(fileName);
 
 			/*
 			 * Beginning at index 1 iterate through each fireIncident (index)
@@ -260,7 +264,7 @@ public class IncidentSortingMethods
 				 */
 				String fileCallCategory = fireIncidents.get(index)
 						.getCallCategory();
-				
+
 				/**
 				 * "Extract the month of the incident from the date using the
 				 * substring method
@@ -273,15 +277,11 @@ public class IncidentSortingMethods
 				 * 
 				 * Increment count by one
 				 */
-				if (fileCallCategory.contains(incidentType) && fileYear.contains(yearInput))
+				if (fileCallCategory.contains(incidentType)
+						&& fileYear.contains(yearInput))
 				{
 					count++;
 				}
-
-//				// Print line for testing
-//				System.out.println(fileCallCategory);
-//				// Print line for testing
-//				System.out.println(count);
 			}
 
 		}
@@ -310,11 +310,10 @@ public class IncidentSortingMethods
 	 * @param MonthInput
 	 * @param yearInput
 	 * @return count
-
+	 * 
 	 */
 	public static int countNumberOfFireIncidentsBasedOfZipMonthYear(
-			String fireFileName, String zipCodeInput, String monthInput,
-			String yearInput)
+			String zipCodeInput, String monthInput, String yearInput)
 	{
 		// Initialize count to use as a counter
 		int count = 0;
@@ -323,9 +322,9 @@ public class IncidentSortingMethods
 		try
 		{
 
-			// Call readAndLoadFireIncidentData on the file name passed as a
-			// paramter
-			readAndLoadFireIncidentData(fireFileName);
+			// // Call readAndLoadFireIncidentData on the file name passed as a
+			// // paramter
+			// readAndLoadFireIncidentData(fireFileName);
 
 			/*
 			 * Beginning at index 1 iterate through each fireIncident (index)
@@ -354,9 +353,6 @@ public class IncidentSortingMethods
 				 */
 				String fileYear = fireIncidents.get(index).getYear();
 
-//				System.out.println(
-//						fileZipCode + " " + fileMonth + " " + fileYear);
-
 				/**
 				 * Compare that the zipCode, Month, Year passed into the
 				 * constructor as parameters all match the current incident
@@ -368,10 +364,7 @@ public class IncidentSortingMethods
 						&& fileMonth.contains(monthInput))
 				{
 					count++;
-//					System.out.println("--------------------------- !!!");
 				}
-//				// Print line for testing
-//				System.out.println("--------------------" + " " + count);
 			}
 		}
 
@@ -404,12 +397,11 @@ public class IncidentSortingMethods
 	 * @return count
 	 */
 	public static int countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
-			String fileName, String zipCodeInput, String monthInput,
-			String yearInput)
+			String zipCodeInput, String monthInput, String yearInput)
 	{
 
-		// Call read and Load Crime Incident Data to iterate through data
-		readAndLoadCrimeIncidentData(fileName);
+		// // Call read and Load Crime Incident Data to iterate through data
+		// readAndLoadCrimeIncidentData(fileName);
 
 		// Initialize count to use as a counter
 		int count = 0;
@@ -454,20 +446,22 @@ public class IncidentSortingMethods
 				 */
 				String[] fileDateParts = fullDate.split(" ")[0].split("/");
 
+
 				/**
 				 * Set fileMonth to equal index 0 of fileDateParts
 				 */
 				String fileMonth = fileDateParts[0];
+
 
 				/**
 				 * Set fileYear to equal index 2 of fileDateParts
 				 */
 				String fileYear = fileDateParts[2];
 
+
 				/**
 				 * Print line for testing
 				 */
-//				System.out.println(fullDate.split(" ")[0] + " " + fileZipCode);
 
 				/**
 				 * Compare that the zipCode, month and year passed into the
@@ -482,12 +476,8 @@ public class IncidentSortingMethods
 				{
 					count++;
 
-					// Print line for testing
-//					System.out.println("--------------------------- !!!");
+					
 				}
-
-				// Print line for testing
-//				System.out.println("--------------------" + " " + count);
 			}
 
 		}
@@ -516,7 +506,7 @@ public class IncidentSortingMethods
 	 * @param inputYear
 	 * @return count
 	 */
-	public static int countTypeOfCrimeInCommunityOnMonthAndYear(String fileName,
+	public static int countTypeOfCrimeInCommunityOnMonthAndYear(
 			String inputCommunity, String inputMonth, String inputYear)
 	{
 
@@ -526,8 +516,8 @@ public class IncidentSortingMethods
 		// Try...
 		try
 		{
-			// Call readAndLoadCrimeIncidentData to iterate through data
-			readAndLoadCrimeIncidentData(fileName);
+			// // Call readAndLoadCrimeIncidentData to iterate through data
+			// readAndLoadCrimeIncidentData(fileName);
 
 			/**
 			 * Iterate through each index of the crimeIncidents array until the
@@ -571,9 +561,6 @@ public class IncidentSortingMethods
 				 */
 				String fileYear = fileDateParts[2];
 
-				System.out
-						.println(fullDate.split(" ")[0] + " " + fileCommunity);
-
 				/**
 				 * Compare that the community, month and year passed into the
 				 * constructor as parameters all match the current incidents
@@ -586,14 +573,7 @@ public class IncidentSortingMethods
 						&& fileYear.contains(inputYear))
 				{
 					count++;
-
-					// Print line for testing
-//					System.out.println("--------------------------- !!!");
 				}
-
-				// Print line for testing
-//				System.out.println("--------------------" + " " + count);
-
 			}
 		}
 

@@ -1,11 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -154,7 +156,10 @@ public class MainProgramView extends JFrame
 	 */
 	public MainProgramView()
 	{
-
+		IncidentSortingMethods
+				.readAndLoadCrimeIncidentData("ARJISPublicCrime030922.csv");
+		IncidentSortingMethods
+				.readAndLoadFireIncidentData("fdIncidents2021DataSD.csv");
 		// Set the of the program
 		setTitle("Police and Fire Data Parser");
 
@@ -665,7 +670,7 @@ public class MainProgramView extends JFrame
 		 * it can be used for display
 		 */
 		String inputCommunityWithoutNumbers = inputCommunity
-				.replaceAll("[^0-9]", "");
+				.replaceAll("[^A-Za-z]", "");
 
 		/**
 		 * Create a string called inputYear and it assign the selected year
@@ -720,11 +725,8 @@ public class MainProgramView extends JFrame
 				 */
 				int counter = IncidentSortingMethods
 						.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
-								"ARJISPublicCrime030922.csv", inputCommunityWithoutLetters,
+								inputCommunityWithoutLetters,
 								inputMonthWithoutLetters, inputYear);
-				System.out.println(inputCommunity);
-				System.out.println(inputMonth);
-				System.out.println(inputYear);
 
 				/**
 				 * If number of incidents is zero then there there is not enough
@@ -755,9 +757,11 @@ public class MainProgramView extends JFrame
 			 * 
 			 */
 			case 2:
-				counter = IncidentSortingMethods.countNumberOfFireIncidentsBasedOfZipMonthYear(
-						"fdIncidents2021DataSD.csv", inputCommunityWithoutLetters, inputMonthWithoutLetters,
-						inputYear);
+				counter = IncidentSortingMethods
+						.countNumberOfFireIncidentsBasedOfZipMonthYear(
+
+								inputCommunityWithoutLetters,
+								inputMonthWithoutLetters, inputYear);
 				/**
 				 * If number of incidents is zero then there there is not enough
 				 * data to answer the quesiton so display that
@@ -786,9 +790,9 @@ public class MainProgramView extends JFrame
 			 * 
 			 */
 			case 3:
-				counter = IncidentSortingMethods.countNumberOfFireIncidentTypeForAGivenYear(
-						"fdIncidents2021DataSD.csv", inputYear,
-						inputCallCategory);
+				counter = IncidentSortingMethods
+						.countNumberOfFireIncidentTypeForAGivenYear(inputYear,
+								inputCallCategory);
 				/**
 				 * If number of incidents is zero then there there is not enough
 				 * data to answer the quesiton so display that
