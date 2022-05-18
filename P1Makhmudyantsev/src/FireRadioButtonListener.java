@@ -65,7 +65,7 @@ public class FireRadioButtonListener implements ActionListener
 			 * JComboBox
 			 */
 			mainProgramView.userQuestionSelection.removeAllItems();
-		
+
 			/**
 			 * setSelectedIndex of userMonthSelection,userYearSelection and
 			 * userCommunitySelection back to index 0 which
@@ -85,10 +85,10 @@ public class FireRadioButtonListener implements ActionListener
 			 * Create a array of the string type called fireQuestions that has
 			 * fire Questions"
 			 */
-			String[] fireQuestions = { "Select an Question",
-					"What is the number of fire incidents on a specifc date month and year",
-					"The number of fire incidents in a year based off of call category ",
-					"Fire Question 3", "Fire 3" };
+			String[] fireQuestions = { "What would you like to know about this incident type",
+					"The number of fire incidents for specific community on a given month and year",
+					"The number of fire incidents for a specific call category on a given year",
+					};
 
 			/**
 			 * Using a for loop populate the userQuestionSelection JComboBox
@@ -100,15 +100,15 @@ public class FireRadioButtonListener implements ActionListener
 						.addItem(fireQuestions[index]);
 			}
 
-			//ADD COMMENT
+			// ADD COMMENT
 			mainProgramView.userCallCategorySelection.removeAllItems();
-			
+
 			/**
 			 * Create a array of the string type called fireRelatedCallCategorys
 			 * that have fire related call categorys
 			 */
 			String[] fireRelatedCallCategorys = { "Select a call category",
-					"Some sort of fire related call" };
+					"Life-Threatening Emergency Response" };
 
 			/**
 			 * Using a for loop populate the userCallCategorySelection JComobo

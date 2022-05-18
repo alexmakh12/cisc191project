@@ -99,6 +99,8 @@ public class MainProgramView extends JFrame
 	// MainProgramView HAS-A eightPanel
 	JPanel eigthPanel;
 
+	JPanel messegePanel;
+
 	// MainProgramView fireIncidetTypeRadioButton
 	JRadioButton fireIncidentTypeRadioButton;
 
@@ -124,16 +126,18 @@ public class MainProgramView extends JFrame
 	String[] defaultUserQuesiton = { "Select Incident Type" };
 
 	// MainProgramView month
-	String[] months = { "Select a month", "1", "2" };
+	String[] months = { "Select a month", "1", "2", "01" };
 
 	// MainProgramView year
-	String[] years = { "Select a year", "2022" };
+	String[] years = { "Select a year", "2022", "2021" };
 
 	// MainProgramView callCategory
 	String[] callCategory = { "Select a Call Category", "Non-Urgent" };
 
 	// MainProgramView community
-	String[] community = { "Select a Community", "92126" };
+	String[] community = { "Select a Community", "92126", "92101" };
+
+	int caseBasedOffOfSelection;
 
 	public MainProgramView()
 	{
@@ -245,6 +249,8 @@ public class MainProgramView extends JFrame
 		seventhPanel = new JPanel();
 		getResultsButton = new JButton();
 		getResultsButton.setText("Get Results");
+		getResultsButton.addActionListener(
+				new GetResultButtonListener(getResultsButton, this));
 		resetButton = new JButton();
 		resetButton.setText("Reset");
 		getResultsButton.setEnabled(false);
@@ -280,14 +286,11 @@ public class MainProgramView extends JFrame
 	{
 		userStateSelection.setSelectedIndex(0);
 		userCitySelection.setSelectedIndex(0);
-		// userCitySelection.setEnabled(false);
-		policeIncidentRadioTypeButton.setEnabled(false);
-		policeAndFireIncidenTypeRadioButton.setEnabled(false);
-		fireIncidentTypeRadioButton.setEnabled(false);
+		groupOfIncidentTypeRadioButtons.clearSelection();
 		userQuestionSelection.setEnabled(false);
 		userQuestionSelection.setSelectedIndex(0);
 		userCommunitySelection.setEnabled(false);
-		userCommunitySelection.setEnabled(false);
+		userCommunitySelection.setSelectedIndex(0);
 		userYearSelection.setEnabled(false);
 		userYearSelection.setSelectedIndex(0);
 		userMonthSelection.setEnabled(false);
@@ -304,27 +307,128 @@ public class MainProgramView extends JFrame
 
 	public void getResults()
 	{
-		checkToUpdateGetResultsButton();
+		switch (caseBasedOffOfSelection)
+		{
+			case 1:
+				int counter = Main
+						.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
+								"ARJISPublicCrime030922.csv",
+								userCommunitySelection.getSelectedItem()
+										.toString(),
+								userMonthSelection.getSelectedItem().toString(),
+								userYearSelection.getSelectedItem().toString());
+
+				messegePanel = new JPanel();
+
+				if (counter == 0)
+				{
+					JOptionPane.showMessageDialog(messegePanel,
+							"Sorry there isnt enough data to answer this, try something different");
+				}
+
+				else
+				{
+
+					JOptionPane.showMessageDialog(messegePanel, "There are"
+							+ counter + "crime incidents in "
+							+ userCommunitySelection.getSelectedItem()
+									.toString()
+							+ userMonthSelection.getSelectedItem().toString()
+							+ " and year "
+							+ userYearSelection.getSelectedItem().toString());
+				}
+				break;
+
+			case 2:
+				counter = Main.countNumberOfFireIncidentsBasedOfZipMonthYear(
+						"fdIncidents2021DataSD.csv",
+						userCommunitySelection.getSelectedItem().toString(),
+						userMonthSelection.getSelectedItem().toString(),
+						userYearSelection.getSelectedItem().toString());
+
+				messegePanel = new JPanel();
+
+				if (counter == 0)
+				{
+					JOptionPane.showMessageDialog(messegePanel,
+							"Sorry there isnt enough data to answer this, try something different");
+				}
+
+				else
+				{
+
+					JOptionPane.showMessageDialog(messegePanel, "There are"
+							+ counter + "fire incidents in "
+							+ userCommunitySelection.getSelectedItem()
+									.toString()
+							+ userMonthSelection.getSelectedItem().toString()
+							+ " and year "
+							+ userYearSelection.getSelectedItem().toString());
+				}
+				break;
+			case 3:
+				counter = Main.countNumberOfFireIncidentTypeForAGivenYear(
+						"fdIncidents2021DataSD.csv",
+						userYearSelection.getSelectedItem().toString(),
+						userCallCategorySelection.getSelectedItem().toString());
+
+				messegePanel = new JPanel();
+
+				if (counter == 0)
+				{
+					JOptionPane.showMessageDialog(messegePanel,
+							"Sorry there isnt enough data to answer this, try something different");
+				}
+				else
+				{
+
+				}
+				JOptionPane.showMessageDialog(messegePanel,
+						"There are"
+								+ userYearSelection.getSelectedItem().toString()
+								+ userCallCategorySelection.getSelectedItem()
+										.toString());
+				break;
+		}
 
 	}
 
 	public void checkToUpdateGetResultsButton()
 	{
-		if (userCommunitySelection.getSelectedItem() != userCommunitySelection
-				.getItemAt(0)
+		if (policeIncidentRadioTypeButton.isSelected() && userCommunitySelection
+				.getSelectedItem() != userCommunitySelection.getItemAt(0)
 				&& userMonthSelection.getSelectedItem() != userMonthSelection
 						.getItemAt(0)
 				&& userYearSelection.getSelectedItem() != userYearSelection
 						.getItemAt(0))
 		{
+			caseBasedOffOfSelection = 1;
 			getResultsButton.setEnabled(true);
-			
-			Main.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
-					"ARJISPublicCrime030922.csv",
-					userCommunitySelection.getSelectedItem().toString(),
-					userMonthSelection.getSelectedItem().toString(),
-					userYearSelection.getSelectedItem().toString());
 		}
+
+		else if (fireIncidentTypeRadioButton.isSelected()
+				&& userCommunitySelection
+						.getSelectedItem() != userCommunitySelection
+								.getItemAt(0)
+				&& userMonthSelection.getSelectedItem() != userMonthSelection
+						.getItemAt(0)
+				&& userYearSelection.getSelectedItem() != userYearSelection
+						.getItemAt(0))
+		{
+			caseBasedOffOfSelection = 2;
+			getResultsButton.setEnabled(true);
+		}
+
+		else if (fireIncidentTypeRadioButton.isSelected()
+				&& userYearSelection.getSelectedItem() != userYearSelection
+						.getItemAt(0)
+				&& userCallCategorySelection
+						.getSelectedItem() != userCallCategorySelection)
+		{
+			caseBasedOffOfSelection = 3;
+			getResultsButton.setEnabled(true);
+		}
+
 	}
 
 	public static void main(String[] args)

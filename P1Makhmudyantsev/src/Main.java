@@ -34,6 +34,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main
 {
@@ -53,13 +54,14 @@ public class Main
 		// countNumberOfFireIncidentType("fdIncidents2022DataSDTest.csv",
 		// "Life-Threatening");
 
-		// countNumberOfFireIncidentsBasedOfZipMonthYear(
-		// "fdIncidents2022DataSD.csv", "92106", "1", "2021");
+		 countNumberOfFireIncidentsBasedOfZipMonthYear(
+		 "fdIncidents2022DataSD.csv", "92106", "1", "2021");
 
 	}
 
 	// Create a new array called fireIncident of the FireIncident type
-	private static FireIncident[] fireIncidents = new FireIncident[171742];
+	private static FireIncident[] fireIncidents = new FireIncident[171741];
+//	private static ArrayList<String> fireIncidents = new fireIncident <String>;
 
 	// Create a new array called CrimeIncident of the CrimeIncident type
 	private static CrimeIncident[] crimeIncidents = new CrimeIncident[55997];
@@ -246,7 +248,7 @@ public class Main
 	 * @param incidentType
 	 * @return count
 	 */
-	public static int countNumberOfFireIncidentType(String fileName,
+	public static int countNumberOfFireIncidentTypeForAGivenYear(String fileName, String yearInput,
 			String incidentType)
 	{
 		// Initialize count to use as a counter
@@ -276,6 +278,12 @@ public class Main
 				 */
 				String fileCallCategory = fireIncidents[index]
 						.getCallCategory();
+				
+				/**
+				 * "Extract the month of the incident from the date using the
+				 * substring method
+				 */
+				String fileYear = fireIncidents[index].getYear();
 
 				/**
 				 * If the callCategory retrieved matches the incidentType passed
@@ -283,7 +291,7 @@ public class Main
 				 * 
 				 * Increment count by one
 				 */
-				if (fileCallCategory.contains(incidentType))
+				if (fileCallCategory.contains(incidentType) && fileYear.contains(yearInput))
 				{
 					count++;
 				}
@@ -316,12 +324,12 @@ public class Main
 	 * @param fileName
 	 * @param zipCodeInput
 	 * @param MonthInput
-	 * @param YearInput
+	 * @param yearInput
 	 * @return count
 	 */
 	public static int countNumberOfFireIncidentsBasedOfZipMonthYear(
 			String fireFileName, String zipCodeInput, String monthInput,
-			String YearInput)
+			String yearInput)
 	{
 		// Initialize count to use as a counter
 		int count = 0;
@@ -371,7 +379,7 @@ public class Main
 				 * If it does increment by one
 				 */
 				if (fileZipCode.contains(zipCodeInput)
-						&& fileYear.contains(YearInput)
+						&& fileYear.contains(yearInput)
 						&& fileMonth.contains(monthInput))
 				{
 					count++;

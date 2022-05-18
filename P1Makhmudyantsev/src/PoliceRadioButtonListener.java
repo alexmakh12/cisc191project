@@ -88,9 +88,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * police Questions"
 			 */
 			String[] policeQuesitons = { "Select an Question",
-					"The Number Of Crime Incidents in a specified community on a given month and year",
-					"The of a type or call category for a given year",
-					"Police Question 3" };
+					"The Number Of Crime Incidents in a specified community on a given month and year"};
 
 			/**
 			 * Using a for loop populate the userQuestionSelection JComboBox
