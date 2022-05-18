@@ -55,6 +55,7 @@ public class ResetButtonListener implements ActionListener
 		 * reset the mainprogramView using the resetProgram method in the
 		 * MainProgramView class
 		 */
+		mainProgramView.resetCaseBasedOffScenario = 1;
 		mainProgramView.resetProgram();
 	}
 

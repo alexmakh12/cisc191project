@@ -25,6 +25,8 @@ import javax.swing.JRadioButton;
  *         References:
  *         <<add more references here>>
  * 
+ *         https://www.youtube.com/watch?v=O4KGYGQvHmw&ab_channel=AlexLee
+ * 
  *         Version/date: 05/16/2022 V3.0
  * 
  *         Responsibilities of class:
@@ -117,7 +119,7 @@ public class MainProgramView extends JFrame
 	JButton resetButton;
 
 	// MainProgramView states
-	String[] states = { "Select a State", "California", };
+	String[] states = { "Select a State" };
 
 	// MainProgramView cities
 	String[] cities = { "Select a City", "San Diego" };
@@ -138,6 +140,8 @@ public class MainProgramView extends JFrame
 	String[] community = { "Select a Community", "92126", "92101" };
 
 	int caseBasedOffOfSelection;
+	
+	int resetCaseBasedOffScenario;
 
 	public MainProgramView()
 	{
@@ -178,6 +182,7 @@ public class MainProgramView extends JFrame
 
 		userStateSelection = new JComboBox(UnitedStatesStates.readWebsite(
 				"https://gist.githubusercontent.com/iamjason/8f8f4bc00c13de86bcad/raw/338c1c9faafde0cd274d531e657a262df1dd5963/us-states-array"));
+
 		userStateSelection.addItemListener(
 				new UserStateSlectionListener(userStateSelection, this));
 		userStateSelection.setSize(1, 10);
@@ -284,25 +289,48 @@ public class MainProgramView extends JFrame
 
 	public void resetProgram()
 	{
-		userStateSelection.setSelectedIndex(0);
-		userCitySelection.setSelectedIndex(0);
-		groupOfIncidentTypeRadioButtons.clearSelection();
-		userQuestionSelection.setEnabled(false);
-		userQuestionSelection.setSelectedIndex(0);
-		userCommunitySelection.setEnabled(false);
-		userCommunitySelection.setSelectedIndex(0);
-		userYearSelection.setEnabled(false);
-		userYearSelection.setSelectedIndex(0);
-		userMonthSelection.setEnabled(false);
-		userMonthSelection.setSelectedIndex(0);
-		userCallCategorySelection.setEnabled(false);
-		userCallCategorySelection.setSelectedIndex(0);
-		getResultsButton.setEnabled(false);
+		switch (resetCaseBasedOffScenario)
+		{
+			//Case for if the reset button is click
+			case 1:
+				userStateSelection.setSelectedIndex(0);
+				userCitySelection.setEnabled(false);
+				userCitySelection.setSelectedIndex(0);
+				groupOfIncidentTypeRadioButtons.clearSelection();
+				userQuestionSelection.setEnabled(false);
+				userQuestionSelection.setSelectedIndex(0);
+				userCommunitySelection.setEnabled(false);
+				userCommunitySelection.setSelectedIndex(0);
+				userYearSelection.setEnabled(false);
+				userYearSelection.setSelectedIndex(0);
+				userMonthSelection.setEnabled(false);
+				userMonthSelection.setSelectedIndex(0);
+				userCallCategorySelection.setEnabled(false);
+				userCallCategorySelection.setSelectedIndex(0);
+				getResultsButton.setEnabled(false);
+				break;
+				
+			//Case for if the userstateSelection is clicked again
+			case 2:
+//				userStateSelection.setSelectedIndex(0);
+				userCitySelection.setSelectedIndex(0);
+				groupOfIncidentTypeRadioButtons.clearSelection();
+				userQuestionSelection.setEnabled(false);
+				userQuestionSelection.setSelectedIndex(0);
+				userCommunitySelection.setEnabled(false);
+				userCommunitySelection.setSelectedIndex(0);
+				userYearSelection.setEnabled(false);
+				userYearSelection.setSelectedIndex(0);
+				userMonthSelection.setEnabled(false);
+				userMonthSelection.setSelectedIndex(0);
+				userCallCategorySelection.setEnabled(false);
+				userCallCategorySelection.setSelectedIndex(0);
+				getResultsButton.setEnabled(false);
 
-		// //Reset the frame fully (testing)
-		// this.dispose();
-		// new MainProgramView();
-
+				break;
+		}
+		
+		
 	}
 
 	public void getResults()

@@ -73,6 +73,7 @@ public class UserStateSlectionListener implements ItemListener
 			 * is now parsing data from a new state (NOTE : hoping to implement
 			 * so that its not only just California and San Diego)
 			 */
+			mainProgramView.resetCaseBasedOffScenario = 2;
 			mainProgramView.resetProgram();
 		}
 	}

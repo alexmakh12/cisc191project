@@ -12,7 +12,8 @@ public class UnitedStatesStates
 		// ArrayList<String> allStatesInTheUnitedStates = new
 		// ArrayList<String>();
 
-		String[] allStatesInTheUnitedStates = new String[54];
+		String[] allStatesInTheUnitedStates = new String[55];
+		allStatesInTheUnitedStates[0] = "Please select a state";
 
 		Scanner scanner = null;
 
@@ -31,7 +32,9 @@ public class UnitedStatesStates
 					int indexOfSecondQuote = state.indexOf(",", 0);
 					state = state.substring(indexOfFirstQuote,
 							indexOfSecondQuote);
-					allStatesInTheUnitedStates[index] = state;
+					state = state.replace("\"", "");
+					allStatesInTheUnitedStates[index+1] = state;
+
 				}
 
 				// COULD USE AN ARRAY LIST BUT ITS NOT DYNAMICALLY SIZED?
