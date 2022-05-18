@@ -720,8 +720,8 @@ public class MainProgramView extends JFrame
 				 */
 				int counter = IncidentSortingMethods
 						.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
-								"ARJISPublicCrime030922.csv", inputCommunity,
-								inputMonth, inputYear);
+								"ARJISPublicCrime030922.csv", inputCommunityWithoutLetters,
+								inputMonthWithoutLetters, inputYear);
 				System.out.println(inputCommunity);
 				System.out.println(inputMonth);
 				System.out.println(inputYear);
@@ -756,7 +756,7 @@ public class MainProgramView extends JFrame
 			 */
 			case 2:
 				counter = IncidentSortingMethods.countNumberOfFireIncidentsBasedOfZipMonthYear(
-						"fdIncidents2021DataSD.csv", inputCommunity, inputMonth,
+						"fdIncidents2021DataSD.csv", inputCommunityWithoutLetters, inputMonthWithoutLetters,
 						inputYear);
 				/**
 				 * If number of incidents is zero then there there is not enough

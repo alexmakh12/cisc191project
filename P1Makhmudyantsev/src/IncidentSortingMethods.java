@@ -20,8 +20,8 @@
  *         <<add more references here>>
  * 
  *         Version/date:
- *         - 5.0
- *         - 04/08/2022
+ *         - 6.0
+ *         - 04/18/2022
  * 
  *         Responsibilities of class:
  *         -Read files and create objects of the Crime Incident tyoe and Fire
@@ -39,9 +39,9 @@ import java.util.ArrayList;
 public class IncidentSortingMethods
 {
 	// Create a new array called fireIncident of the FireIncident type
-	private static FireIncident[] fireIncidents = new FireIncident[171741];
+//	private static FireIncident[] fireIncidents = new FireIncident[171741];
 	
-	//private static ArrayList<String> fireIncidents = new fireIncident <String>;
+	private static ArrayList<FireIncident> fireIncidents = new ArrayList<FireIncident>();
 
 	// Create a new array called CrimeIncident of the CrimeIncident type
 	private static CrimeIncident[] crimeIncidents = new CrimeIncident[55997];
@@ -52,7 +52,7 @@ public class IncidentSortingMethods
 	 * @param fileName
 	 * @return fireIncidents
 	 */
-	public static FireIncident[] readAndLoadFireIncidentData(String fileName)
+	public static ArrayList<FireIncident> readAndLoadFireIncidentData(String fileName)
 	{
 
 		// Try...
@@ -105,8 +105,8 @@ public class IncidentSortingMethods
 				 * using
 				 * FireIncident constructor
 				 */
-				fireIncidents[incidentNumber] = new FireIncident(day, month,
-						year, zipCode, callCategory);
+				fireIncidents.add(new FireIncident(day, month,
+						year, zipCode, callCategory));
 
 				/**
 				 * Incriment incidentNumber by one for the next incident in the
@@ -224,9 +224,13 @@ public class IncidentSortingMethods
 	 * Count the number of FireIncident's in a file Based off the type of
 	 * incident
 	 * 
+	 * Note: In use by mainProgramView
+	 * 
 	 * @param fileName
 	 * @param incidentType
 	 * @return count
+	 * 
+	 * KEEP
 	 */
 	public static int countNumberOfFireIncidentTypeForAGivenYear(String fileName, String yearInput,
 			String incidentType)
@@ -249,21 +253,21 @@ public class IncidentSortingMethods
 			 * Note : begin at index 1 since its a description line in the csv
 			 * file
 			 */
-			for (int index = 1; index < fireIncidents.length; index++)
+			for (int index = 1; index < fireIncidents.size(); index++)
 			{
 				/**
 				 * Set fileCallCategory of the string type to equal the
 				 * callCatgeory of the current incident which is retrieved using
 				 * the getter method from the Fire Incident class
 				 */
-				String fileCallCategory = fireIncidents[index]
+				String fileCallCategory = fireIncidents.get(index)
 						.getCallCategory();
 				
 				/**
 				 * "Extract the month of the incident from the date using the
 				 * substring method
 				 */
-				String fileYear = fireIncidents[index].getYear();
+				String fileYear = fireIncidents.get(index).getYear();
 
 				/**
 				 * If the callCategory retrieved matches the incidentType passed
@@ -301,11 +305,14 @@ public class IncidentSortingMethods
 	 * Count the number of fire incidents in a file based on a specific date,
 	 * month and year
 	 * 
+	 * Note: In use by mainProgramView
+	 * 
 	 * @param fileName
 	 * @param zipCodeInput
 	 * @param MonthInput
 	 * @param yearInput
 	 * @return count
+
 	 */
 	public static int countNumberOfFireIncidentsBasedOfZipMonthYear(
 			String fireFileName, String zipCodeInput, String monthInput,
@@ -328,26 +335,26 @@ public class IncidentSortingMethods
 			 * Note : begin at index 1 since its a description line in the csv
 			 * file
 			 */
-			for (int index = 1; index < fireIncidents.length; index++)
+			for (int index = 1; index < fireIncidents.size(); index++)
 			{
 
 				/**
 				 * For the current fireIncident get the zipCode and assign it to
 				 * fileZipCode
 				 */
-				String fileZipCode = fireIncidents[index].getZipCode();
+				String fileZipCode = fireIncidents.get(index).getZipCode();
 
 				/**
 				 * "Extract" the year of the incident from the date using the
 				 * substring method
 				 */
-				String fileMonth = fireIncidents[index].getMonth();
+				String fileMonth = fireIncidents.get(index).getMonth();
 
 				/**
 				 * "Extract the month of the incident from the date using the
 				 * substring method
 				 */
-				String fileYear = fireIncidents[index].getYear();
+				String fileYear = fireIncidents.get(index).getYear();
 
 //				System.out.println(
 //						fileZipCode + " " + fileMonth + " " + fileYear);
@@ -389,6 +396,8 @@ public class IncidentSortingMethods
 	 * Count the Number Of Crime Incidents if the zipCode month based off of
 	 * the zipCode, month and year
 	 * passed into the method
+	 * 
+	 * Note: In use by mainProgramView
 	 * 
 	 * @param fileName
 	 * @param zipCodeInput
