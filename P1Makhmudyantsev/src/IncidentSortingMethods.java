@@ -38,13 +38,11 @@ import java.util.ArrayList;
 
 public class IncidentSortingMethods
 {
-	// Create a new array called fireIncident of the FireIncident type
-//	private static FireIncident[] fireIncidents = new FireIncident[171741];
-	
+	// Create a new arrayList called fireIncident of the FireIncident type
 	private static ArrayList<FireIncident> fireIncidents = new ArrayList<FireIncident>();
 
-	// Create a new array called CrimeIncident of the CrimeIncident type
-	private static CrimeIncident[] crimeIncidents = new CrimeIncident[55997];
+	// Create a new arrayList called CrimeIncident of the CrimeIncident type
+	private static ArrayList<CrimeIncident> crimeIncidents = new ArrayList<CrimeIncident>();
 
 	/**
 	 * Read Fire Incident Data and load needed information into an array
@@ -138,7 +136,7 @@ public class IncidentSortingMethods
 	 * @param fileName
 	 * @return array
 	 */
-	public static CrimeIncident[] readAndLoadCrimeIncidentData(String fileName)
+	public static ArrayList<CrimeIncident> readAndLoadCrimeIncidentData(String fileName)
 	{
 		try
 		{
@@ -193,8 +191,8 @@ public class IncidentSortingMethods
 				 * In the incidents array create a new incident object using
 				 * CrimeIncident constructor
 				 */
-				crimeIncidents[incidentNumber] = new CrimeIncident(date,
-						zipCode, community, callCategory);
+				crimeIncidents.add(new CrimeIncident(date,
+						zipCode, community, callCategory));
 
 				/**
 				 * Incriment incidentNumber by one for the next incident in the
@@ -426,7 +424,7 @@ public class IncidentSortingMethods
 			 * Note: we being with index 1 since in the CSV file index 0 is the
 			 * legend for the file
 			 */
-			for (int index = 1; index < crimeIncidents.length; index++)
+			for (int index = 1; index < crimeIncidents.size(); index++)
 			{
 
 				// Within the current index of the crimeIncidents array
@@ -434,12 +432,12 @@ public class IncidentSortingMethods
 				/**
 				 * Get the crime incidents zipCode
 				 */
-				String fileZipCode = crimeIncidents[index].getZipCode();
+				String fileZipCode = crimeIncidents.get(index).getZipCode();
 
 				/**
 				 * Get the crime incidents date
 				 */
-				String fullDate = crimeIncidents[index].getDate();
+				String fullDate = crimeIncidents.get(index).getDate();
 
 				/**
 				 * Create a fileDateParts array to only use the date and month
@@ -538,15 +536,15 @@ public class IncidentSortingMethods
 			 * Note: we being with index 1 since in the CSV file index 0 is the
 			 * legend for the file
 			 */
-			for (int index = 1; index < crimeIncidents.length; index++)
+			for (int index = 1; index < crimeIncidents.size(); index++)
 			{
 
-				String fileCommunity = crimeIncidents[index].getCommunity();
+				String fileCommunity = crimeIncidents.get(index).getCommunity();
 
 				/**
 				 * Get the crime incidents date
 				 */
-				String fullDate = crimeIncidents[index].getDate();
+				String fullDate = crimeIncidents.get(index).getDate();
 
 				/**
 				 * Create a fileDateParts array to only use the date and month
