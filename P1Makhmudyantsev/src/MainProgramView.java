@@ -27,6 +27,9 @@ import javax.swing.JRadioButton;
  * 
  *         https://www.youtube.com/watch?v=O4KGYGQvHmw&ab_channel=AlexLee
  * 
+ *         (regex function)
+ *         https://stackoverflow.com/questions/1903252/extract-integer-part-in-string
+ * 
  *         Version/date: 05/16/2022 V3.0
  * 
  *         Responsibilities of class:
@@ -128,19 +131,22 @@ public class MainProgramView extends JFrame
 	String[] defaultUserQuesiton = { "Select Incident Type" };
 
 	// MainProgramView month
-	String[] months = { "Select a month", "1", "2", "01" };
+	String[] months = { "Select a month", "1 January", "2 Feburary", "3 March",
+			"4 April", "5 May", "6 June", "7 July", "8 August", "9 Septmeber",
+			"10 October", "11 Novemeber", "12 Decmeber" };
 
 	// MainProgramView year
 	String[] years = { "Select a year", "2022", "2021" };
 
 	// MainProgramView callCategory
-	String[] callCategory = { "Select a Call Category", "Non-Urgent" };
+	String[] callCategory = { "Select a Call Category" };
 
 	// MainProgramView community
-	String[] community = { "Select a Community", "92126", "92101" };
+	String[] community = { "Select a Community", "92126 (Mira Mesa)",
+			"92101 (Downtown)" };
 
 	int caseBasedOffOfSelection;
-	
+
 	int resetCaseBasedOffScenario;
 
 	public MainProgramView()
@@ -291,7 +297,7 @@ public class MainProgramView extends JFrame
 	{
 		switch (resetCaseBasedOffScenario)
 		{
-			//Case for if the reset button is click
+			// Case for if the reset button is click
 			case 1:
 				userStateSelection.setSelectedIndex(0);
 				userCitySelection.setEnabled(false);
@@ -309,10 +315,10 @@ public class MainProgramView extends JFrame
 				userCallCategorySelection.setSelectedIndex(0);
 				getResultsButton.setEnabled(false);
 				break;
-				
-			//Case for if the userstateSelection is clicked again
+
+			// Case for if the userstateSelection is clicked again
 			case 2:
-//				userStateSelection.setSelectedIndex(0);
+				// userStateSelection.setSelectedIndex(0);
 				userCitySelection.setSelectedIndex(0);
 				groupOfIncidentTypeRadioButtons.clearSelection();
 				userQuestionSelection.setEnabled(false);
@@ -329,24 +335,37 @@ public class MainProgramView extends JFrame
 
 				break;
 		}
-		
-		
+
 	}
 
 	public void getResults()
 	{
+
+		String inputCommunity = userCommunitySelection.getSelectedItem()
+				.toString();
+		inputCommunity = inputCommunity.replaceAll("[^0-9]", "");
+		String inputYear = userYearSelection.getSelectedItem().toString();
+		String inputMonth = userMonthSelection.getSelectedItem().toString();
+		inputMonth = inputMonth.replaceAll("[^0-9]", "");
+		String inputCallCategory = userCallCategorySelection.getSelectedItem()
+				.toString();
+		messegePanel = new JPanel();
+
 		switch (caseBasedOffOfSelection)
 		{
+			/**
+			 * Quesiton : The number of crime incidents in a specified community
+			 * on a
+			 * given month and year
+			 */
 			case 1:
 				int counter = Main
 						.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
-								"ARJISPublicCrime030922.csv",
-								userCommunitySelection.getSelectedItem()
-										.toString(),
-								userMonthSelection.getSelectedItem().toString(),
-								userYearSelection.getSelectedItem().toString());
-
-				messegePanel = new JPanel();
+								"ARJISPublicCrime030922.csv", inputCommunity,
+								inputMonth, inputYear);
+				System.out.println(inputCommunity);
+				System.out.println(inputMonth);
+				System.out.println(inputYear);
 
 				if (counter == 0)
 				{
@@ -356,25 +375,23 @@ public class MainProgramView extends JFrame
 
 				else
 				{
-
-					JOptionPane.showMessageDialog(messegePanel, "There are"
-							+ counter + "crime incidents in "
-							+ userCommunitySelection.getSelectedItem()
-									.toString()
-							+ userMonthSelection.getSelectedItem().toString()
-							+ " and year "
-							+ userYearSelection.getSelectedItem().toString());
+					inputMonth = userMonthSelection.getSelectedItem()
+							.toString();
+					inputMonth = inputMonth.replaceAll("[^A-Za-z]", "");
+					inputCallCategory = userCallCategorySelection
+							.getSelectedItem().toString();
+					inputCommunity = inputCommunity.replaceAll("[^A-Za-z]", "");
+					JOptionPane.showMessageDialog(messegePanel,
+							"There were " + counter + " crime incidents in "
+									+ inputCommunity + " for the month "
+									+ inputMonth + " and year " + inputYear);
 				}
 				break;
 
 			case 2:
 				counter = Main.countNumberOfFireIncidentsBasedOfZipMonthYear(
-						"fdIncidents2021DataSD.csv",
-						userCommunitySelection.getSelectedItem().toString(),
-						userMonthSelection.getSelectedItem().toString(),
-						userYearSelection.getSelectedItem().toString());
-
-				messegePanel = new JPanel();
+						"fdIncidents2021DataSD.csv", inputCommunity, inputMonth,
+						inputYear);
 
 				if (counter == 0)
 				{
@@ -396,11 +413,8 @@ public class MainProgramView extends JFrame
 				break;
 			case 3:
 				counter = Main.countNumberOfFireIncidentTypeForAGivenYear(
-						"fdIncidents2021DataSD.csv",
-						userYearSelection.getSelectedItem().toString(),
-						userCallCategorySelection.getSelectedItem().toString());
-
-				messegePanel = new JPanel();
+						"fdIncidents2021DataSD.csv", inputYear,
+						inputCallCategory);
 
 				if (counter == 0)
 				{
@@ -411,9 +425,10 @@ public class MainProgramView extends JFrame
 				{
 					JOptionPane.showMessageDialog(messegePanel,
 							"There are"
-									+ userYearSelection.getSelectedItem().toString()
-									+ userCallCategorySelection.getSelectedItem()
-									.toString());
+									+ userYearSelection.getSelectedItem()
+											.toString()
+									+ userCallCategorySelection
+											.getSelectedItem().toString());
 				}
 				break;
 		}
@@ -460,7 +475,16 @@ public class MainProgramView extends JFrame
 
 	public static void main(String[] args)
 	{
+		try
+		{
+			new MainProgramView();
+		}
+		catch (Exception e)
+		{
+			JOptionPane errorMessagePanel = new JOptionPane();
+			JOptionPane.showMessageDialog(errorMessagePanel,
+					"Woah there is seriously something wrong with your program");
+		}
 
-		new MainProgramView();
 	}
 }

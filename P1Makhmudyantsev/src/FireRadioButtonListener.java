@@ -108,7 +108,7 @@ public class FireRadioButtonListener implements ActionListener
 			 * that have fire related call categorys
 			 */
 			String[] fireRelatedCallCategorys = { "Select a call category",
-					"Life-Threatening Emergency Response" };
+					"Life-Threatening Emergency Response", "Life-Threatening Emergency", "Response Urgent Response", "HAZARD"};
 
 			/**
 			 * Using a for loop populate the userCallCategorySelection JComobo
