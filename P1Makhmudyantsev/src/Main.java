@@ -54,8 +54,8 @@ public class Main
 		// countNumberOfFireIncidentType("fdIncidents2022DataSDTest.csv",
 		// "Life-Threatening");
 
-		 countNumberOfFireIncidentsBasedOfZipMonthYear(
-		 "fdIncidents2022DataSD.csv", "92106", "1", "2021");
+//		 countNumberOfFireIncidentsBasedOfZipMonthYear(
+//		 "fdIncidents2022DataSD.csv", "92106", "1", "2021");
 
 	}
 
@@ -296,10 +296,10 @@ public class Main
 					count++;
 				}
 
-				// Print line for testing
-				System.out.println(fileCallCategory);
-				// Print line for testing
-				System.out.println(count);
+//				// Print line for testing
+//				System.out.println(fileCallCategory);
+//				// Print line for testing
+//				System.out.println(count);
 			}
 
 		}
@@ -369,8 +369,8 @@ public class Main
 				 */
 				String fileYear = fireIncidents[index].getYear();
 
-				System.out.println(
-						fileZipCode + " " + fileMonth + " " + fileYear);
+//				System.out.println(
+//						fileZipCode + " " + fileMonth + " " + fileYear);
 
 				/**
 				 * Compare that the zipCode, Month, Year passed into the
@@ -383,10 +383,10 @@ public class Main
 						&& fileMonth.contains(monthInput))
 				{
 					count++;
-					System.out.println("--------------------------- !!!");
+//					System.out.println("--------------------------- !!!");
 				}
-				// Print line for testing
-				System.out.println("--------------------" + " " + count);
+//				// Print line for testing
+//				System.out.println("--------------------" + " " + count);
 			}
 		}
 
@@ -480,7 +480,7 @@ public class Main
 				/**
 				 * Print line for testing
 				 */
-				System.out.println(fullDate.split(" ")[0] + " " + fileZipCode);
+//				System.out.println(fullDate.split(" ")[0] + " " + fileZipCode);
 
 				/**
 				 * Compare that the zipCode, month and year passed into the
@@ -496,11 +496,11 @@ public class Main
 					count++;
 
 					// Print line for testing
-					System.out.println("--------------------------- !!!");
+//					System.out.println("--------------------------- !!!");
 				}
 
 				// Print line for testing
-				System.out.println("--------------------" + " " + count);
+//				System.out.println("--------------------" + " " + count);
 			}
 
 		}
@@ -601,11 +601,11 @@ public class Main
 					count++;
 
 					// Print line for testing
-					System.out.println("--------------------------- !!!");
+//					System.out.println("--------------------------- !!!");
 				}
 
 				// Print line for testing
-				System.out.println("--------------------" + " " + count);
+//				System.out.println("--------------------" + " " + count);
 
 			}
 		}

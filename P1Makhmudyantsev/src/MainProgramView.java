@@ -409,13 +409,12 @@ public class MainProgramView extends JFrame
 				}
 				else
 				{
-
+					JOptionPane.showMessageDialog(messegePanel,
+							"There are"
+									+ userYearSelection.getSelectedItem().toString()
+									+ userCallCategorySelection.getSelectedItem()
+									.toString());
 				}
-				JOptionPane.showMessageDialog(messegePanel,
-						"There are"
-								+ userYearSelection.getSelectedItem().toString()
-								+ userCallCategorySelection.getSelectedItem()
-										.toString());
 				break;
 		}
 
