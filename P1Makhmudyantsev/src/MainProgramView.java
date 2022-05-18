@@ -718,7 +718,7 @@ public class MainProgramView extends JFrame
 				 * Get the number of incidents the calling the method from the
 				 * main class and passing the parameters needed for that class
 				 */
-				int counter = Main
+				int counter = IncidentSortingMethods
 						.countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
 								"ARJISPublicCrime030922.csv", inputCommunity,
 								inputMonth, inputYear);
@@ -755,7 +755,7 @@ public class MainProgramView extends JFrame
 			 * 
 			 */
 			case 2:
-				counter = Main.countNumberOfFireIncidentsBasedOfZipMonthYear(
+				counter = IncidentSortingMethods.countNumberOfFireIncidentsBasedOfZipMonthYear(
 						"fdIncidents2021DataSD.csv", inputCommunity, inputMonth,
 						inputYear);
 				/**
@@ -786,7 +786,7 @@ public class MainProgramView extends JFrame
 			 * 
 			 */
 			case 3:
-				counter = Main.countNumberOfFireIncidentTypeForAGivenYear(
+				counter = IncidentSortingMethods.countNumberOfFireIncidentTypeForAGivenYear(
 						"fdIncidents2021DataSD.csv", inputYear,
 						inputCallCategory);
 				/**

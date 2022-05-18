@@ -36,32 +36,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main
+public class IncidentSortingMethods
 {
-	public static void main(String[] args)
-	{
-
-		// readAndLoadCrimeIncidentData("ARJISPublicCrime030922.csv");
-
-		 countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
-		 "ARJISPublicCrime030922.csv", "92101", "9", "2021");
-
-		// countTypeOfCrimeInCommunityOnMonthAndYear("ARJISPublicCrime030922.csv",
-		// "SAN DIEGO", "9","2021");
-
-		// readAndLoadFireIncidentData("fdIncidents2022DataSDTest.csv");
-
-		// countNumberOfFireIncidentType("fdIncidents2022DataSDTest.csv",
-		// "Life-Threatening");
-
-//		 countNumberOfFireIncidentsBasedOfZipMonthYear(
-//		 "fdIncidents2022DataSD.csv", "92106", "1", "2021");
-
-	}
-
 	// Create a new array called fireIncident of the FireIncident type
 	private static FireIncident[] fireIncidents = new FireIncident[171741];
-//	private static ArrayList<String> fireIncidents = new fireIncident <String>;
+	
+	//private static ArrayList<String> fireIncidents = new fireIncident <String>;
 
 	// Create a new array called CrimeIncident of the CrimeIncident type
 	private static CrimeIncident[] crimeIncidents = new CrimeIncident[55997];
