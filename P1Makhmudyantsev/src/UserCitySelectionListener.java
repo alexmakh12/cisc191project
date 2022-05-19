@@ -70,8 +70,6 @@ public class UserCitySelectionListener implements ItemListener
 
 			// mainProgramView.policeAndFireIncidenTypeRadioButton.setEnabled(true);
 
-			// Print the user city selection
-			System.out.println(userCitySelection.getSelectedItem());
 		}
 	}
 }

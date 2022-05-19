@@ -74,7 +74,22 @@ public class UserStateSlectionListener implements ItemListener
 			 * so that its not only just California and San Diego)
 			 */
 			mainProgramView.resetCaseBasedOffScenario = 2;
-			mainProgramView.resetProgram();
+
+			if (mainProgramView.userStateSelection.getSelectedItem().toString()
+					.contains("California"))
+			{
+				String[] sanDiegoCities = { "Select a city", "San Diego",
+						"Sacramento" };
+				for (int index = 0; index < sanDiegoCities.length; index++)
+				{
+					mainProgramView.userCitySelection
+							.addItem(sanDiegoCities[index]);
+					
+				}
+				System.out.println(mainProgramView.userCitySelection
+						.getSelectedItem());
+			}
+
 		}
 	}
 

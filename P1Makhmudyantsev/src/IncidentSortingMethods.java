@@ -54,6 +54,7 @@ public class IncidentSortingMethods
 			String fileName)
 	{
 
+		BufferedReader bufferedReader = null;
 		// Try...
 		try
 		{
@@ -63,17 +64,13 @@ public class IncidentSortingMethods
 			 * takes the fileName (passed in as a parameter) to read the file
 			 * line by line efficiently by buffering characters
 			 */
-			BufferedReader bufferedReader = new BufferedReader(
-					new FileReader(fileName));
+			bufferedReader = new BufferedReader(new FileReader(fileName));
 
 			/**
 			 * Initialize result as an empty array to hold data read from the
 			 * file
 			 */
 			String result = "";
-
-			// Initialize IncidentNumber to increment the number of incidents
-			int incidentNumber = 0;
 
 			// While the buffered reader has a line to read (is not null)
 			while ((result = bufferedReader.readLine()) != null)
@@ -107,12 +104,7 @@ public class IncidentSortingMethods
 				fireIncidents.add(new FireIncident(day, month, year, zipCode,
 						callCategory));
 
-				/**
-				 * Incriment incidentNumber by one for the next incident in the
-				 * array
-				 */
 
-				incidentNumber++;
 			}
 		}
 
@@ -121,14 +113,29 @@ public class IncidentSortingMethods
 		 * getters from (created a huge Array when reading file) or and
 		 * IOExcpetions
 		 */
-		catch (IOException | NullPointerException e)
+		catch (Exception e)
 		{
 			// Print and trace the Error
 			e.printStackTrace();
 		}
 
+		finally
+		{
+			try
+			{
+				if (bufferedReader != null)
+				{
+					bufferedReader.close();
+				}
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
 		// Return fireIncidents array's
 		return fireIncidents;
+
 	}
 
 	/**
@@ -156,8 +163,6 @@ public class IncidentSortingMethods
 			 */
 			String result = "";
 
-			// Initialize IncidentNumber to increment the number of incidents
-			int incidentNumber = 0;
 
 			while ((result = bufferedReader.readLine()) != null)
 			{
@@ -175,7 +180,6 @@ public class IncidentSortingMethods
 				 * expression function us used.
 				 */
 
-		
 				String[] data = result
 						.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
 
@@ -197,14 +201,8 @@ public class IncidentSortingMethods
 				 */
 				crimeIncidents.add(new CrimeIncident(date, zipCode, community,
 						callCategory));
-
-				/**
-				 * Incriment incidentNumber by one for the next incident in the
-				 * array
-				 */
-
-				incidentNumber++;
 			}
+			bufferedReader.close();
 		}
 
 		/**
@@ -446,18 +444,15 @@ public class IncidentSortingMethods
 				 */
 				String[] fileDateParts = fullDate.split(" ")[0].split("/");
 
-
 				/**
 				 * Set fileMonth to equal index 0 of fileDateParts
 				 */
 				String fileMonth = fileDateParts[0];
 
-
 				/**
 				 * Set fileYear to equal index 2 of fileDateParts
 				 */
 				String fileYear = fileDateParts[2];
-
 
 				/**
 				 * Print line for testing
@@ -476,7 +471,6 @@ public class IncidentSortingMethods
 				{
 					count++;
 
-					
 				}
 			}
 

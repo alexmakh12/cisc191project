@@ -127,7 +127,7 @@ public class MainProgramView extends JFrame
 	String[] states = { "Select a State" };
 
 	// MainProgramView cities
-	String[] cities = { "Select a City", "San Diego" };
+	String[] cities = { "Select a City", };
 
 	// MainProgramView defaultUserQuestion
 	String[] defaultUserQuesiton = { "Select Incident Type" };
@@ -171,7 +171,7 @@ public class MainProgramView extends JFrame
 		 * beginning Instructions of the program
 		 */
 		firstProgramInstructions = new JLabel();
-		firstProgramInstructions.setText("Select a state and a city to being");
+		firstProgramInstructions.setText("Select a state and a city to begin");
 		firstProgramInstructions.setFont(new Font("Tahoma", Font.BOLD, 15));
 		firstProgramInstructions.setAlignmentX(Component.CENTER_ALIGNMENT);
 		firstProgramInstructions.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -553,6 +553,8 @@ public class MainProgramView extends JFrame
 				 * selected
 				 */
 				groupOfIncidentTypeRadioButtons.clearSelection();
+				fireIncidentTypeRadioButton.setEnabled(false);
+				policeIncidentRadioTypeButton.setEnabled(false);
 				/**
 				 * Set the userQuestionSelection to be disabled and the 0th
 				 * index which is the default question selection instructions
@@ -602,6 +604,8 @@ public class MainProgramView extends JFrame
 				 * selected
 				 */
 				groupOfIncidentTypeRadioButtons.clearSelection();
+				fireIncidentTypeRadioButton.setEnabled(false);
+				policeIncidentRadioTypeButton.setEnabled(false);
 				/**
 				 * Set the userQuestionSelection to be disabled and the 0th
 				 * index which is the default question selection instructions
