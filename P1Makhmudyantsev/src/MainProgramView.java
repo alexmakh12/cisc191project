@@ -145,7 +145,7 @@ public class MainProgramView extends JFrame
 
 	// MainProgramView community
 	String[] community = { "Select a Community", "92126 (Mira Mesa)",
-			"92101 (Downtown)" };
+			"92101 (Downtown)", "92108 (Mission Valley)" ," 92107 (Ocean Beach)"};
 
 	int caseBasedOffOfSelection;
 
@@ -750,9 +750,8 @@ public class MainProgramView extends JFrame
 					JOptionPane.showMessageDialog(messegePanel,
 							"There were " + counter + " crime incidents in "
 									+ inputCommunityWithoutNumbers
-									+ " for the month "
-									+ inputMonthWithoutNumbers + " and year "
-									+ inputYear);
+									+ " for the month of "
+									+ inputMonthWithoutNumbers + inputYear);
 				}
 				break;
 
@@ -782,8 +781,8 @@ public class MainProgramView extends JFrame
 				{
 
 					JOptionPane.showMessageDialog(messegePanel,
-							"There are" + counter + "fire incidents in "
-									+ inputCommunityWithoutNumbers + "in "
+							"There were " + counter + " fire incidents in "
+									+ inputCommunityWithoutNumbers + " in "
 									+ inputMonthWithoutNumbers + inputYear);
 
 				}
@@ -812,7 +811,7 @@ public class MainProgramView extends JFrame
 				else
 				{
 					JOptionPane.showMessageDialog(messegePanel,
-							"There were " + counter + inputCallCategory
+							"There were " + counter + " " + inputCallCategory
 									+ " incidents in " + inputYear);
 				}
 				break;

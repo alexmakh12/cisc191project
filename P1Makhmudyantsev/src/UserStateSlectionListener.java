@@ -78,16 +78,27 @@ public class UserStateSlectionListener implements ItemListener
 			if (mainProgramView.userStateSelection.getSelectedItem().toString()
 					.contains("California"))
 			{
-				String[] sanDiegoCities = { "Select a city", "San Diego",
-						"Sacramento" };
+				mainProgramView.userCitySelection.removeAllItems();
+				String[] sanDiegoCities = { "Select a city", "San Diego", };
 				for (int index = 0; index < sanDiegoCities.length; index++)
 				{
 					mainProgramView.userCitySelection
 							.addItem(sanDiegoCities[index]);
-					
+
 				}
-				System.out.println(mainProgramView.userCitySelection
-						.getSelectedItem());
+				System.out.println(
+						mainProgramView.userCitySelection.getSelectedItem());
+				mainProgramView.fireIncidentTypeRadioButton.setEnabled(false);
+				mainProgramView.policeIncidentRadioTypeButton.setEnabled(false);
+			}
+			else
+			{
+				mainProgramView.userCitySelection.removeAllItems();
+				mainProgramView.userCitySelection.addItem("Select a city");
+				mainProgramView.groupOfIncidentTypeRadioButtons
+						.clearSelection();
+				mainProgramView.fireIncidentTypeRadioButton.setEnabled(false);
+				mainProgramView.policeIncidentRadioTypeButton.setEnabled(false);
 			}
 
 		}
