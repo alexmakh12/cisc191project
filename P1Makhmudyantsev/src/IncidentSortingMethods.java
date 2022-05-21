@@ -43,7 +43,7 @@ public class IncidentSortingMethods
 
 	// Create a new arrayList called CrimeIncident of the CrimeIncident type
 	private static ArrayList<CrimeIncident> crimeIncidents = new ArrayList<CrimeIncident>();
-
+	
 	/**
 	 * Read Fire Incident Data and load needed information into an array
 	 * 

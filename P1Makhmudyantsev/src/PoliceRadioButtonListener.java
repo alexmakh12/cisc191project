@@ -87,7 +87,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * Create a array of the string type called policQuestions that has
 			 * police Questions"
 			 */
-			String[] policeQuesitons = { "Select an Question",
+			String[] policeQuesitons = { "What would you like to know about this incident type",
 					"The Number Of Crime Incidents in a specified community on a given month and year"};
 
 			/**

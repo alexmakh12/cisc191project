@@ -783,7 +783,7 @@ public class MainProgramView extends JFrame
 					JOptionPane.showMessageDialog(messegePanel,
 							"There were " + counter + " fire incidents in "
 									+ inputCommunityWithoutNumbers + " in "
-									+ inputMonthWithoutNumbers + inputYear);
+									+ inputMonthWithoutNumbers + " "+ inputYear);
 
 				}
 				break;
