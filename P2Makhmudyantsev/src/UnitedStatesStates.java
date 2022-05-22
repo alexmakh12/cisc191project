@@ -67,51 +67,43 @@ public class UnitedStatesStates
 			// While the scanner has a next line to read
 			while (scanner.hasNextLine())
 			{
+
 				// Set the next line read to be state
 				state = scanner.nextLine();
+				/**
+				 * Set indexOfFirstQuote to be the index of the first quote
+				 */
+				int indexOfFirstQuote = state.indexOf("\"", 0);
 
 				/**
-				 * Create a for loop to iterate through the
-				 * allStatesInTheUnitedStates and add a state to the list
+				 * Set indexOfSecondQuote to be the index of the comma
 				 */
-				for (int index = 0; index < allStatesInTheUnitedStates
-						.size(); index++)
-				{
-					/**
-					 * Set indexOfFirstQuote to be the index of the first quote
-					 */
-					int indexOfFirstQuote = state.indexOf("\"", 0);
+				int indexOfSecondQuote = state.indexOf(",", 0);
 
-					/**
-					 * Set indexOfSecondQuote to be the index of the comma
-					 */
-					int indexOfSecondQuote = state.indexOf(",", 0);
+				/**
+				 * Using the substring method set state equal to the string
+				 * between the index
+				 */
+				state = state.substring(indexOfFirstQuote, indexOfSecondQuote);
 
-					/**
-					 * Using the substring method set state equal to the string
-					 * between the index
-					 */
-					state = state.substring(indexOfFirstQuote,
-							indexOfSecondQuote);
+				/**
+				 * Remove any quotes around the string
+				 */
+				state = state.replace("\"", "");
 
-					/**
-					 * Remove any quotes around the string
-					 */
-					state = state.replace("\"", "");
-
-					/**
-					 * Add the state to the array list and move onto the next
-					 * line
-					 */
-					allStatesInTheUnitedStates.add(state);
-
-				}
+				/**
+				 * Add the state to the array list and move onto the next
+				 * line
+				 */
+				allStatesInTheUnitedStates.add(state);
 
 			}
 		}
 
 		// Catch any exceptions thrown
-		catch (Exception e)
+		catch (
+
+		Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -119,16 +111,16 @@ public class UnitedStatesStates
 		// Always close the scanner
 		finally
 		{
-			//Try this block of code
+			// Try this block of code
 			try
 			{
-				//If the scanner is not null try to close it
+				// If the scanner is not null try to close it
 				if (scanner != null)
 				{
 					scanner.close();
 				}
 			}
-			
+
 			/**
 			 * If an exception is thrown while trying to close the scanner
 			 * catch the error
