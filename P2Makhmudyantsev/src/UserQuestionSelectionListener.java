@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/16/2022 V3.0
+ *         Version/date: 05/21/2022 V3.0
  * 
  *         Responsibilities of class:
  *         - Creates a user question selection listener that implements
@@ -29,10 +29,10 @@ public class UserQuestionSelectionListener implements ItemListener
 {
 
 	// UserQuestionSelectionListener HAS-A mainProgramView
-	MainProgramView mainProgramView;
+	private MainProgramView mainProgramView;
 
 	// UserQuestionSelectionListener HAS-A userQuesitonSelection
-	JComboBox userQuestionSelection;
+	private JComboBox userQuestionSelection;
 
 	/**
 	 * Constructor that creates a new UserQuestionSelectionListener object
@@ -40,10 +40,10 @@ public class UserQuestionSelectionListener implements ItemListener
 	 * @param userQuestionSelection2
 	 * @param mainProgramView
 	 */
-	public UserQuestionSelectionListener(JComboBox userQuestionSelection2,
+	public UserQuestionSelectionListener(JComboBox userQuestionSelection,
 			MainProgramView mainProgramView)
 	{
-		this.userQuestionSelection = userQuestionSelection2;
+		this.userQuestionSelection = userQuestionSelection;
 		this.mainProgramView = mainProgramView;
 	}
 

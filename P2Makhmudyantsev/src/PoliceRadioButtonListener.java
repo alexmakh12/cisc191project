@@ -15,11 +15,11 @@ import javax.swing.JRadioButton;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/16/2022 V3.0
+ *         Version/date: 05/21/2022 V4.0
  * 
  *         Responsibilities of class:
  *         - Creates a police radio button listener that implements a
- *         ActionListener to perform actions when a police radio button is 
+ *         ActionListener to perform actions when a police radio button is
  *         clicked
  */
 /**
@@ -27,10 +27,10 @@ import javax.swing.JRadioButton;
 public class PoliceRadioButtonListener implements ActionListener
 {
 	// PoliceRadioButtonListener HAS-A mainProgramView
-	MainProgramView mainProgramView;
+	private MainProgramView mainProgramView;
 
 	// PoliceRadioButtonListener HAS-A policeRadioButton
-	JRadioButton policeRadioButton;
+	private JRadioButton policeRadioButton;
 
 	/**
 	 * PoliceRadioButtonListener constructor that creates a new
@@ -66,7 +66,6 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * JComboBox
 			 */
 			mainProgramView.userQuestionSelection.removeAllItems();
-			
 
 			/**
 			 * setSelectedIndex of userMonthSelection,userYearSelection and
@@ -87,8 +86,9 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * Create a array of the string type called policQuestions that has
 			 * police Questions"
 			 */
-			String[] policeQuesitons = { "What would you like to know about this incident type",
-					"The Number Of Crime Incidents in a specified community on a given month and year"};
+			String[] policeQuesitons = {
+					"What would you like to know about this incident type",
+					"The Number Of Crime Incidents in a specified community on a given month and year" };
 
 			/**
 			 * Using a for loop populate the userQuestionSelection JComboBox
@@ -99,21 +99,24 @@ public class PoliceRadioButtonListener implements ActionListener
 				mainProgramView.userQuestionSelection
 						.addItem(policeQuesitons[index]);
 			}
-			
-			//ADD COMMENT
+
+			/**
+			 * Remove any call categories unrelated to police 
+			 * from other incident types
+			 */
 			mainProgramView.userCallCategorySelection.removeAllItems();
 
 			/**
 			 * Create a array of the string type called
 			 * policeRelatedCallCategorys that have police related call
-			 * categorys
+			 * category's
 			 */
 			String[] policeRelatedCallCategoryCalls = {
 					"Select an Call Category", "Felony" };
 
 			/**
 			 * Using a for loop populate the userCallCategorySelection JComobo
-			 * with police related call categorys
+			 * with police related call category's
 			 */
 			for (int index = 0; index < policeRelatedCallCategoryCalls.length; index++)
 			{

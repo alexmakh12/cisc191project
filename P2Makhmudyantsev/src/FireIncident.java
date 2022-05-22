@@ -17,9 +17,7 @@
  * 
  *         <<add more references here>>
  * 
- *         Version/date:
- *         - 5.0
- *         - 04/08/2022
+ *         Version/date: 05/21/2022 V6.0
  * 
  *         Responsibilities of class:
  *         - Create a Fire that IS-A incident and implements the CallCategory

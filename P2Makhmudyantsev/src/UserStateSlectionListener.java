@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/16/2022 V3.0
+ *         Version/date: 05/21/2022 V4.0
  * 
  *         Responsibilities of class:
  *         - Creates a user state selection listener that implements
@@ -28,10 +28,10 @@ import javax.swing.JComboBox;
 public class UserStateSlectionListener implements ItemListener
 {
 	// UserStateSlectionListener HAS-A mainProgramView
-	MainProgramView mainProgramView;
+	private MainProgramView mainProgramView;
 
 	// UserStateSlectionListener HAS-A userStateSlection
-	JComboBox userStateSelection;
+	private JComboBox userStateSelection;
 
 	/**
 	 * Constructor that creates a new userStateSelectionListener
@@ -69,29 +69,56 @@ public class UserStateSlectionListener implements ItemListener
 			 * whole program
 			 * 
 			 * We are doing this since if the user changes a state they will
-			 * need to select a coresponing city to that state and the program
+			 * need to select a corresponding city to that state and the program
 			 * is now parsing data from a new state (NOTE : hoping to implement
 			 * so that its not only just California and San Diego)
 			 */
 			mainProgramView.resetCaseBasedOffScenario = 2;
+
+			/**
+			 * Call the resetProgram method from the mainProgram view using the
+			 * second switch statement case
+			 */
 			mainProgramView.resetProgram();
 
+			/**
+			 * Check if selected California is selected
+			 */
 			if (mainProgramView.userStateSelection.getSelectedItem().toString()
 					.contains("California"))
 			{
+
+				/**
+				 * if it is remove all of the items from the
+				 * user CitySeleciton and add the correlated cities of
+				 * California
+				 */
 				mainProgramView.userCitySelection.removeAllItems();
+
 				String[] sanDiegoCities = { "Select a city", "San Diego", };
+
 				for (int index = 0; index < sanDiegoCities.length; index++)
 				{
 					mainProgramView.userCitySelection
 							.addItem(sanDiegoCities[index]);
-
 				}
-				System.out.println(
-						mainProgramView.userCitySelection.getSelectedItem());
+
+				/**
+				 * Set the group of radioButtons to be disabled (not sure why
+				 * they are enabling)
+				 */
 				mainProgramView.fireIncidentTypeRadioButton.setEnabled(false);
 				mainProgramView.policeIncidentRadioTypeButton.setEnabled(false);
 			}
+
+			/**
+			 * Else California is not selected so remove all the items from the
+			 * California box and add "Select a city" (which will not let the
+			 * user continue).
+			 * 
+			 * Set the group of radioButtons to be disabled (not sure why they
+			 * are enabling)
+			 */
 			else
 			{
 				mainProgramView.userCitySelection.removeAllItems();

@@ -15,11 +15,12 @@ import javax.swing.JButton;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/16/2022 V1.0
+ *         Version/date: 05/21/2022 V2.0
  * 
  *         Responsibilities of class:
- *         - Creates a reset radio button listener that implements ActionListener
- *         to perform actions when a reset radio button is clicked
+ *         - Creates a reset button listener that implements
+ *         ActionListener to perform actions when a reset button
+ *         is clicked
  */
 /**
  */
@@ -27,10 +28,10 @@ import javax.swing.JButton;
 public class ResetButtonListener implements ActionListener
 {
 	// ResetButtonListener HAS-A mainProgramView
-	MainProgramView mainProgramView;
+	private MainProgramView mainProgramView;
 
 	// ResetButtonListener HAS-A resetButton
-	JButton resetButton;
+	private JButton resetButton;
 
 	/**
 	 * ResetButtonListener constructor that create a new ResetButtonListener
@@ -53,7 +54,7 @@ public class ResetButtonListener implements ActionListener
 	{
 		/**
 		 * reset the mainprogramView using the resetProgram method in the
-		 * MainProgramView class
+		 * MainProgramView class based off of the first switch statement
 		 */
 		mainProgramView.resetCaseBasedOffScenario = 1;
 		mainProgramView.resetProgram();

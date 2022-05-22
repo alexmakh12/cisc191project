@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/16/2022 V3.0
+ *         Version/date: 05/21/2022 V4.0
  * 
  *         Responsibilities of class:
  *         - Creates a user city selection listener that implements
@@ -27,10 +27,10 @@ import javax.swing.JComboBox;
 public class UserCitySelectionListener implements ItemListener
 {
 	// UserCitySelectionListener HAS-A mainProgramView
-	MainProgramView mainProgramView;
+	private MainProgramView mainProgramView;
 
 	// userCitySelection HAS-A userCitySeleciton
-	JComboBox userCitySelection;
+	private JComboBox userCitySelection;
 
 	/**
 	 * Constructor that creates a new UserCitySelectionListener object
@@ -65,8 +65,10 @@ public class UserCitySelectionListener implements ItemListener
 			mainProgramView.fireIncidentTypeRadioButton.setEnabled(true);
 			mainProgramView.policeIncidentRadioTypeButton.setEnabled(true);
 
-			// Currently commented out since the listener for this button is not
-			// created
+			/**
+			 * Currently commented out since the listener for this button is not
+			 * created
+			 */
 
 			// mainProgramView.policeAndFireIncidenTypeRadioButton.setEnabled(true);
 

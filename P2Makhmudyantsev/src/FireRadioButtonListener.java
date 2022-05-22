@@ -15,7 +15,7 @@ import javax.swing.JRadioButton;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/16/2022 V3.0
+ *         Version/date: 05/21/2022 V4.0
  * 
  *         Responsibilities of class:
  *         - Creates a fire radio button listener implements an ActionListener
@@ -26,10 +26,10 @@ import javax.swing.JRadioButton;
 public class FireRadioButtonListener implements ActionListener
 {
 	// FireRadioButtonListener HAS-A mainProgramView
-	MainProgramView mainProgramView;
+	private MainProgramView mainProgramView;
 
 	// FireRadioButton HAS-A fireButton
-	JRadioButton fireRadioButton;
+	private JRadioButton fireRadioButton;
 
 	/**
 	 * FireRadioButtonListener constructor that creates a new
@@ -85,10 +85,10 @@ public class FireRadioButtonListener implements ActionListener
 			 * Create a array of the string type called fireQuestions that has
 			 * fire Questions"
 			 */
-			String[] fireQuestions = { "What would you like to know about this incident type",
+			String[] fireQuestions = {
+					"What would you like to know about this incident type",
 					"The number of fire incidents for specific community on a given month and year",
-					"The number of fire incidents for a specific call category on a given year",
-					};
+					"The number of fire incidents for a specific call category on a given year", };
 
 			/**
 			 * Using a for loop populate the userQuestionSelection JComboBox
@@ -100,19 +100,24 @@ public class FireRadioButtonListener implements ActionListener
 						.addItem(fireQuestions[index]);
 			}
 
-			// ADD COMMENT
+			/**
+			 * Remove any call categories unrelated to fire
+			 * from other incident types
+			 */
 			mainProgramView.userCallCategorySelection.removeAllItems();
 
 			/**
 			 * Create a array of the string type called fireRelatedCallCategorys
-			 * that have fire related call categorys
+			 * that have fire related call category's
 			 */
 			String[] fireRelatedCallCategorys = { "Select a call category",
-					"Life-Threatening Emergency Response", "Non-Life-Threatening Response", "Urgent Response", "HAZARD"};
+					"Life-Threatening Emergency Response",
+					"Non-Life-Threatening Response", "Urgent Response",
+					"HAZARD" };
 
 			/**
 			 * Using a for loop populate the userCallCategorySelection JComobo
-			 * with fire related call categorys
+			 * with fire related call category's
 			 */
 			for (int index = 0; index < fireRelatedCallCategorys.length; index++)
 			{

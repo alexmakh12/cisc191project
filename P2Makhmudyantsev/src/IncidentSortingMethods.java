@@ -19,9 +19,7 @@
  * 
  *         <<add more references here>>
  * 
- *         Version/date:
- *         - 6.0
- *         - 04/18/2022
+ *         Version/date: 05/21/2022 V6.0
  * 
  *         Responsibilities of class:
  *         -Read files and create objects of the Crime Incideant tyoe and Fire
@@ -43,9 +41,9 @@ public class IncidentSortingMethods
 
 	// Create a new arrayList called CrimeIncident of the CrimeIncident type
 	private static ArrayList<CrimeIncident> crimeIncidents = new ArrayList<CrimeIncident>();
-	
+
 	/**
-	 * Read Fire Incident Data and load needed information into an array
+	 * Read Fire Incident Data and load needed information into an array list
 	 * 
 	 * @param fileName
 	 * @return fireIncidents
@@ -54,6 +52,10 @@ public class IncidentSortingMethods
 			String fileName)
 	{
 
+		/**
+		 * Initialize a bufferedReader outside of the try block so its visible
+		 * to the whole method
+		 */
 		BufferedReader bufferedReader = null;
 		// Try...
 		try
@@ -104,31 +106,34 @@ public class IncidentSortingMethods
 				fireIncidents.add(new FireIncident(day, month, year, zipCode,
 						callCategory));
 
-
 			}
 		}
 
-		/**
-		 * Catch NullPointerException when there is no more index's to use
-		 * getters from (created a huge Array when reading file) or and
-		 * IOExcpetions
-		 */
+		// Catch any exceptions that are thrown
 		catch (Exception e)
 		{
 			// Print and trace the Error
 			e.printStackTrace();
 		}
 
+		// Always close the bufferedReader
 		finally
 		{
+			// Try this block of code
 			try
 			{
+				// If the bufferedReader is not null try to close it
 				if (bufferedReader != null)
 				{
 					bufferedReader.close();
 				}
 			}
-			catch (IOException e)
+
+			/**
+			 * If an exception is thrown while trying to close the
+			 * bufferedReader catch the error
+			 */
+			catch (Exception e)
 			{
 				e.printStackTrace();
 			}
@@ -139,7 +144,7 @@ public class IncidentSortingMethods
 	}
 
 	/**
-	 * Read Crime Incident Data and load needed information into an array
+	 * Read Crime Incident Data and load needed information into an array list
 	 * 
 	 * @param fileName
 	 * @return array
@@ -147,6 +152,12 @@ public class IncidentSortingMethods
 	public static ArrayList<CrimeIncident> readAndLoadCrimeIncidentData(
 			String fileName)
 	{
+
+		/**
+		 * Initialize a bufferedReader outside of the try block so its visible
+		 * to the whole method
+		 */
+		BufferedReader bufferedReader = null;
 		try
 		{
 			/**
@@ -154,15 +165,13 @@ public class IncidentSortingMethods
 			 * takes the fileName (passed in as a parameter) to read the file
 			 * line by line efficiently by buffering characters
 			 */
-			BufferedReader bufferedReader = new BufferedReader(
-					new FileReader(fileName));
+			bufferedReader = new BufferedReader(new FileReader(fileName));
 
 			/**
 			 * Initialize result as an empty array to hold data read from the
 			 * file
 			 */
 			String result = "";
-
 
 			while ((result = bufferedReader.readLine()) != null)
 			{
@@ -205,15 +214,34 @@ public class IncidentSortingMethods
 			bufferedReader.close();
 		}
 
-		/**
-		 * Catch NullPointerException when there is no more index's to use
-		 * getters from (created a huge Array when reading file) or and
-		 * IOExcpetions
-		 */
-		catch (NullPointerException | IOException e)
+		// Catch any exceptions that are thrown
+		catch (Exception e)
 		{
 			// Print and trace error if it is thrown
 			e.printStackTrace();
+		}
+
+		// Always close the bufferedReader
+		finally
+		{
+			// Try this block of code
+			try
+			{
+				// If the bufferedReader is not null try to close it
+				if (bufferedReader != null)
+				{
+					bufferedReader.close();
+				}
+			}
+
+			/**
+			 * If an exception is thrown while trying to close the
+			 * bufferedReader catch the error
+			 */
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		// return CrimeIncident array
@@ -221,16 +249,12 @@ public class IncidentSortingMethods
 	}
 
 	/**
-	 * Count the number of FireIncident's in a file Based off the type of
-	 * incident
+	 * Count the number of fire incidents based off of the input year and
+	 * incident type
 	 * 
-	 * Note: In use by mainProgramView
-	 * 
-	 * @param fileName
+	 * @param yearInput
 	 * @param incidentType
-	 * @return count
-	 * 
-	 *         KEEP
+	 * @return count (number of incidents)
 	 */
 	public static int countNumberOfFireIncidentTypeForAGivenYear(
 			String yearInput, String incidentType)
@@ -241,12 +265,6 @@ public class IncidentSortingMethods
 		// Try...
 		try
 		{
-			// /**
-			// * Call readAndLoadFireIncidentData on the file passed as a
-			// * parameter
-			// */
-			// readAndLoadFireIncidentData(fileName);
-
 			/*
 			 * Beginning at index 1 iterate through each fireIncident (index)
 			 * until the last one is reached
@@ -256,28 +274,26 @@ public class IncidentSortingMethods
 			for (int index = 1; index < fireIncidents.size(); index++)
 			{
 				/**
-				 * Set fileCallCategory of the string type to equal the
-				 * callCatgeory of the current incident which is retrieved using
-				 * the getter method from the Fire Incident class
+				 * For the current fireIncident index get the call category and
+				 * assign it to fileCallCategory
 				 */
 				String fileCallCategory = fireIncidents.get(index)
 						.getCallCategory();
 
 				/**
-				 * "Extract the month of the incident from the date using the
-				 * substring method
+				 * For the current fireIncident index get the year and
+				 * assign it to fileYear
 				 */
 				String fileYear = fireIncidents.get(index).getYear();
 
 				/**
-				 * If the callCategory retrieved matches the incidentType passed
-				 * as a parameter
-				 * 
-				 * Increment count by one
+				 * Check if the callCategory retrieved matches the incidentType
+				 * passed as a parameter
 				 */
 				if (fileCallCategory.contains(incidentType)
 						&& fileYear.contains(yearInput))
 				{
+					// If it does increment by one
 					count++;
 				}
 			}
@@ -285,12 +301,11 @@ public class IncidentSortingMethods
 		}
 
 		/**
-		 * Catch NullPointerException when there is no more index's to use
-		 * getters from (created a huge Array when reading file)
+		 * Catch any exceptions that are thrown
 		 */
-		catch (NullPointerException e)
+		catch (Exception e)
 		{
-			// Print and trace error if it is thrown
+			// Print and trace the error if it is thrown
 			e.printStackTrace();
 		}
 
@@ -298,17 +313,14 @@ public class IncidentSortingMethods
 	}
 
 	/**
-	 * Count the number of fire incidents in a file based on a specific date,
-	 * month and year
-	 * 
-	 * Note: In use by mainProgramView
+	 * Count the number of fire incidents based on a input zipCode, month and
+	 * year
 	 * 
 	 * @param fileName
 	 * @param zipCodeInput
 	 * @param MonthInput
 	 * @param yearInput
 	 * @return count
-	 * 
 	 */
 	public static int countNumberOfFireIncidentsBasedOfZipMonthYear(
 			String zipCodeInput, String monthInput, String yearInput)
@@ -319,11 +331,6 @@ public class IncidentSortingMethods
 		// try..
 		try
 		{
-
-			// // Call readAndLoadFireIncidentData on the file name passed as a
-			// // paramter
-			// readAndLoadFireIncidentData(fireFileName);
-
 			/*
 			 * Beginning at index 1 iterate through each fireIncident (index)
 			 * until the last one is reached
@@ -334,20 +341,20 @@ public class IncidentSortingMethods
 			{
 
 				/**
-				 * For the current fireIncident get the zipCode and assign it to
-				 * fileZipCode
+				 * For the current fireIncident index get the zipCode and assign
+				 * it to fileZipCode
 				 */
 				String fileZipCode = fireIncidents.get(index).getZipCode();
 
 				/**
-				 * "Extract" the year of the incident from the date using the
-				 * substring method
+				 * For the current fireIncident index get the month and assign
+				 * it to fileMonth
 				 */
 				String fileMonth = fireIncidents.get(index).getMonth();
 
 				/**
-				 * "Extract the month of the incident from the date using the
-				 * substring method
+				 * For the current fireIncident index get the year and assign
+				 * it to fileYear
 				 */
 				String fileYear = fireIncidents.get(index).getYear();
 
@@ -367,10 +374,9 @@ public class IncidentSortingMethods
 		}
 
 		/**
-		 * Catch NullPointerException when there is no more index's to use
-		 * getters from (created a huge Array when reading file)
+		 * Catch any exceptions that are thrown
 		 */
-		catch (NullPointerException e)
+		catch (Exception e)
 		{
 			// Print and trace error if it is thrown
 			e.printStackTrace();
@@ -382,11 +388,8 @@ public class IncidentSortingMethods
 	}
 
 	/**
-	 * Count the Number Of Crime Incidents if the zipCode month based off of
-	 * the zipCode, month and year
-	 * passed into the method
-	 * 
-	 * Note: In use by mainProgramView
+	 * Count the number Of crime Incidents based on a input zipCode, month and
+	 * year
 	 * 
 	 * @param fileName
 	 * @param zipCodeInput
@@ -397,35 +400,29 @@ public class IncidentSortingMethods
 	public static int countNumberOfCrimeIncidentsBasedOfZipCodeMonthYear(
 			String zipCodeInput, String monthInput, String yearInput)
 	{
-
-		// // Call read and Load Crime Incident Data to iterate through data
-		// readAndLoadCrimeIncidentData(fileName);
-
 		// Initialize count to use as a counter
 		int count = 0;
 
 		// Try...
 		try
 		{
-			/**
-			 * Iterate through each index of the crimeIncidents array until the
-			 * last one is reached
-			 * 
-			 * Note: we being with index 1 since in the CSV file index 0 is the
-			 * legend for the file
+			/*
+			 * Beginning at index 1 iterate through each crimeIncident (index)
+			 * until the last one is reached
+			 * Note : begin at index 1 since its a description line in the csv
+			 * file
 			 */
 			for (int index = 1; index < crimeIncidents.size(); index++)
 			{
-
-				// Within the current index of the crimeIncidents array
-
 				/**
-				 * Get the crime incidents zipCode
+				 * For the current crimeIncident index get the zipCode and
+				 * assign it to fileZipCode
 				 */
 				String fileZipCode = crimeIncidents.get(index).getZipCode();
 
 				/**
-				 * Get the crime incidents date
+				 * For the current crimeIncident index get the fullDate and
+				 * assign it to fullDate
 				 */
 				String fullDate = crimeIncidents.get(index).getDate();
 
@@ -445,137 +442,37 @@ public class IncidentSortingMethods
 				String[] fileDateParts = fullDate.split(" ")[0].split("/");
 
 				/**
-				 * Set fileMonth to equal index 0 of fileDateParts
+				 * For the current fileDateParts get the second index of it and
+				 * set it equal to fileMonth
 				 */
 				String fileMonth = fileDateParts[0];
 
 				/**
-				 * Set fileYear to equal index 2 of fileDateParts
+				 * For the current fileDateParts get the second index of it and
+				 * set it equal to fileYear
 				 */
 				String fileYear = fileDateParts[2];
-
-				/**
-				 * Print line for testing
-				 */
 
 				/**
 				 * Compare that the zipCode, month and year passed into the
 				 * constructor as parameters all match the current incidents
 				 * zipCode month and year
-				 * 
-				 * If it does increment by one
 				 */
 				if (fileZipCode.contains(zipCodeInput)
 						&& fileMonth.contains(monthInput)
 						&& fileYear.contains(yearInput))
 				{
+					// If it does increment by one
 					count++;
-
 				}
 			}
 
 		}
 
 		/**
-		 * Catch NullPointerException when there is no more index's to use
-		 * getters from (created a huge Array when reading file)
+		 * Catch any exceptions that are thrown
 		 */
-		catch (NullPointerException e)
-		{
-			// Print and trace error if it is thrown
-			e.printStackTrace();
-		}
-
-		// return count
-		return count;
-	}
-
-	/**
-	 * Count the number of Crime Incidents in a certain community within a
-	 * certain month and year passed as parameters
-	 * 
-	 * @param fileName
-	 * @param inputCommunity
-	 * @param inputMonth
-	 * @param inputYear
-	 * @return count
-	 */
-	public static int countTypeOfCrimeInCommunityOnMonthAndYear(
-			String inputCommunity, String inputMonth, String inputYear)
-	{
-
-		// Initialize count to use as a counter
-		int count = 0;
-
-		// Try...
-		try
-		{
-			// // Call readAndLoadCrimeIncidentData to iterate through data
-			// readAndLoadCrimeIncidentData(fileName);
-
-			/**
-			 * Iterate through each index of the crimeIncidents array until the
-			 * last one is reached
-			 * 
-			 * Note: we being with index 1 since in the CSV file index 0 is the
-			 * legend for the file
-			 */
-			for (int index = 1; index < crimeIncidents.size(); index++)
-			{
-
-				String fileCommunity = crimeIncidents.get(index).getCommunity();
-
-				/**
-				 * Get the crime incidents date
-				 */
-				String fullDate = crimeIncidents.get(index).getDate();
-
-				/**
-				 * Create a fileDateParts array to only use the date and month
-				 * 
-				 * This is done so we can use the day and month individually for
-				 * comparison
-				 * 
-				 * First split the date by space which will leave index 0 as the
-				 * date and index 1 as the time
-				 * 
-				 * Take the 0th index furthermore split it by the back slash
-				 * results in 3 index's
-				 * 
-				 */
-				String[] fileDateParts = fullDate.split(" ")[0].split("/");
-
-				/**
-				 * Set fileMonth to equal index 0 of fileDateParts
-				 */
-				String fileMonth = fileDateParts[0];
-
-				/**
-				 * Set fileYear to equal index 2 of fileDateParts
-				 */
-				String fileYear = fileDateParts[2];
-
-				/**
-				 * Compare that the community, month and year passed into the
-				 * constructor as parameters all match the current incidents
-				 * community month and year
-				 * 
-				 * If it does increment by one
-				 */
-				if (fileCommunity.contains(inputCommunity)
-						&& fileMonth.contains(inputMonth)
-						&& fileYear.contains(inputYear))
-				{
-					count++;
-				}
-			}
-		}
-
-		/**
-		 * Catch NullPointerException when there is no more index's to use
-		 * getters from (created a huge Array when reading file)
-		 */
-		catch (NullPointerException e)
+		catch (Exception e)
 		{
 			// Print and trace error if it is thrown
 			e.printStackTrace();

@@ -17,9 +17,7 @@
  * 
  *         <<add more references here>>
  * 
- *         Version/date:
- *         - 4.0
- *         - 04/08/2022
+ *         Version/date: 05/21/2022 V6.0
  * 
  *         Responsibilities of class:
  *         - Abstract class that creates an Incident
@@ -31,7 +29,7 @@ public abstract class Incident
 	private String zipCode;
 
 	/**
-	 * Constrcutor that creates a Incident with date and zipCode
+	 * Constructor that creates a Incident with date and zipCode
 	 * 
 	 * @param zipCode
 	 */

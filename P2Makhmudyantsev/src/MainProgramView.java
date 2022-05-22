@@ -1,13 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,10 +27,14 @@ import javax.swing.JRadioButton;
  * 
  *         https://www.youtube.com/watch?v=O4KGYGQvHmw&ab_channel=AlexLee
  * 
- *         (regex function)
+ *   
  *         https://stackoverflow.com/questions/1903252/extract-integer-part-in-string
  * 
- *         Version/date: 05/18/2022 V5.0
+ *         https://stackoverflow.com/questions/10372862/java-string-remove-all-non-numeric-characters-but-keep-the-decimal-separator
+ *         
+ *         https://stackoverflow.com/questions/1291704/how-do-i-populate-a-jcombobox-with-an-arraylist
+ * 
+ *         Version/date: 05/21/2022 V6.0
  * 
  *         Responsibilities of class:
  *         - Creates a MainProgramView that is a JFrame
@@ -44,16 +46,16 @@ import javax.swing.JRadioButton;
 public class MainProgramView extends JFrame
 {
 	// MainProgramView HAS-A firstProgramInstrucitons
-	JLabel firstProgramInstructions;
+	private JLabel firstProgramInstructions;
 
 	// MainProgramView HAS-A secondProgramInstructions
-	JLabel secondProgramInstructions;
+	private JLabel secondProgramInstructions;
 
 	// MainProgramView HAS-A thirdProgramInstructions
-	JLabel thirdProgramInstructions;
+	private JLabel thirdProgramInstructions;
 
 	// MainProgramView HAS-A creatorSignature
-	JLabel creatorSignature;
+	private JLabel creatorSignature;
 
 	// MainProgramView HAS-A userStateSelection
 	JComboBox userStateSelection;
@@ -80,33 +82,33 @@ public class MainProgramView extends JFrame
 	ButtonGroup groupOfIncidentTypeRadioButtons;
 
 	// MainProgramView HAS-A panelContainer
-	JPanel panelContainer;
+	private JPanel panelContainer;
 
 	// MainProgramView HAS-A firstPanel
-	JPanel firstPanel;
+	private JPanel firstPanel;
 
 	// MainProgramView HAS-A secondPanel
-	JPanel secondPanel;
+	private JPanel secondPanel;
 
 	// MainProgramView HAS-A thirdPanel
-	JPanel thirdPanel;
+	private JPanel thirdPanel;
 
 	// MainProgramView HAS-A fourthPanel
-	JPanel fourthPanel;
+	private JPanel fourthPanel;
 
 	// MainProgramView HAS-A fifthPanel
-	JPanel fifthPanel;
+	private JPanel fifthPanel;
 
 	// MainProgramView HAS-A sixthPanel
-	JPanel sixthPanel;
+	private JPanel sixthPanel;
 
 	// MainProgramView HAS-A seventhPanel
-	JPanel seventhPanel;
+	private JPanel seventhPanel;
 
 	// MainProgramView HAS-A eightPanel
-	JPanel eigthPanel;
+	private JPanel eigthPanel;
 
-	JPanel messegePanel;
+	private JPanel messegePanel;
 
 	// MainProgramView fireIncidetTypeRadioButton
 	JRadioButton fireIncidentTypeRadioButton;
@@ -118,34 +120,35 @@ public class MainProgramView extends JFrame
 	JRadioButton policeAndFireIncidenTypeRadioButton;
 
 	// MainProgramView getResultsButton
-	JButton getResultsButton;
+	private JButton getResultsButton;
 
 	// MainProgramView resetButton
-	JButton resetButton;
+	private JButton resetButton;
 
 	// MainProgramView states
-	String[] states = { "Select a State" };
+	private String[] states = { "Select a State" };
 
 	// MainProgramView cities
-	String[] cities = { "Select a City", };
+	private String[] cities = { "Select a City" };
 
 	// MainProgramView defaultUserQuestion
-	String[] defaultUserQuesiton = { "Select Incident Type" };
+	private String[] defaultUserQuesiton = { "Select Incident Type" };
 
 	// MainProgramView month
-	String[] months = { "Select a month", "1 January", "2 Feburary", "3 March",
-			"4 April", "5 May", "6 June", "7 July", "8 August", "9 Septmeber",
-			"10 October", "11 Novemeber", "12 Decmeber" };
+	private String[] months = { "Select a month", "1 January", "2 Feburary",
+			"3 March", "4 April", "5 May", "6 June", "7 July", "8 August",
+			"9 Septmeber", "10 October", "11 Novemeber", "12 Decmeber" };
 
 	// MainProgramView year
-	String[] years = { "Select a year", "2022", "2021" };
+	private String[] years = { "Select a year", "2022", "2021" };
 
 	// MainProgramView callCategory
-	String[] callCategory = { "Select a Call Category" };
+	private String[] callCategory = { "Select a Call Category" };
 
 	// MainProgramView community
-	String[] community = { "Select a Community", "92126 (Mira Mesa)",
-			"92101 (Downtown)", "92108 (Mission Valley)" ," 92107 (Ocean Beach)"};
+	private String[] community = { "Select a Community", "92126 (Mira Mesa)",
+			"92101 (Downtown)", "92108 (Mission Valley)",
+			" 92107 (Ocean Beach)" };
 
 	int caseBasedOffOfSelection;
 
@@ -157,9 +160,9 @@ public class MainProgramView extends JFrame
 	public MainProgramView()
 	{
 		IncidentSortingMethods
-				.readAndLoadCrimeIncidentData("ARJISPublicCrime030922.csv");
+				.readAndLoadCrimeIncidentData("P2Makhmudyantsev/ARJISPublicCrime030922.csv");
 		IncidentSortingMethods
-				.readAndLoadFireIncidentData("fdIncidents2021DataSD.csv");
+				.readAndLoadFireIncidentData("P2Makhmudyantsev/fdIncidents2021DataSD.csv");
 		// Set the of the program
 		setTitle("Police and Fire Data Parser");
 
@@ -227,7 +230,7 @@ public class MainProgramView extends JFrame
 		 * JComboBox
 		 */
 		userStateSelection = new JComboBox(UnitedStatesStates.readWebsite(
-				"https://gist.githubusercontent.com/iamjason/8f8f4bc00c13de86bcad/raw/338c1c9faafde0cd274d531e657a262df1dd5963/us-states-array"));
+				"https://gist.githubusercontent.com/iamjason/8f8f4bc00c13de86bcad/raw/338c1c9faafde0cd274d531e657a262df1dd5963/us-states-array").toArray());
 		userStateSelection.addItemListener(
 				new UserStateSlectionListener(userStateSelection, this));
 
@@ -783,7 +786,8 @@ public class MainProgramView extends JFrame
 					JOptionPane.showMessageDialog(messegePanel,
 							"There were " + counter + " fire incidents in "
 									+ inputCommunityWithoutNumbers + " in "
-									+ inputMonthWithoutNumbers + " "+ inputYear);
+									+ inputMonthWithoutNumbers + " "
+									+ inputYear);
 
 				}
 				break;
