@@ -160,9 +160,9 @@ public class MainProgramView extends JFrame
 	public MainProgramView()
 	{
 		IncidentSortingMethods
-				.readAndLoadCrimeIncidentData("P2Makhmudyantsev/ARJISPublicCrime030922.csv");
+				.readAndLoadCrimeIncidentData("main/ARJISPublicCrime030922.csv");
 		IncidentSortingMethods
-				.readAndLoadFireIncidentData("P2Makhmudyantsev/fdIncidents2021DataSD.csv");
+				.readAndLoadFireIncidentData("main/fdIncidents2021DataSD.csv");
 		// Set the of the program
 		setTitle("Police and Fire Data Parser");
 
