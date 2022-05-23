@@ -57,7 +57,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * enabled the userQuestionSelection JComboBox (assuming you have
 			 * not answered the cities JComboBox)
 			 */
-			mainProgramView.userQuestionSelection.setEnabled(true);
+			mainProgramView.getUserQuestionSelection().setEnabled(true);
 
 			/**
 			 * Remove all items from the user question selection JComboBox. We
@@ -65,7 +65,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * want the previous incident type questions to be populated in the
 			 * JComboBox
 			 */
-			mainProgramView.userQuestionSelection.removeAllItems();
+			mainProgramView.getUserQuestionSelection().removeAllItems();
 
 			/**
 			 * setSelectedIndex of userMonthSelection,userYearSelection and
@@ -78,9 +78,9 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * and that question may not need those selected fields. So we will
 			 * have the answer the questions again.
 			 */
-			mainProgramView.userMonthSelection.setSelectedIndex(0);
-			mainProgramView.userYearSelection.setSelectedIndex(0);
-			mainProgramView.userCommunitySelection.setSelectedIndex(0);
+			mainProgramView.getUserMonthSelection().setSelectedIndex(0);
+			mainProgramView.getUserYearSelection().setSelectedIndex(0);
+			mainProgramView.getUserCommunitySelection().setSelectedIndex(0);
 
 			/**
 			 * Create a array of the string type called policQuestions that has
@@ -96,7 +96,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 */
 			for (int index = 0; index < policeQuesitons.length; index++)
 			{
-				mainProgramView.userQuestionSelection
+				mainProgramView.getUserQuestionSelection()
 						.addItem(policeQuesitons[index]);
 			}
 
@@ -104,7 +104,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 * Remove any call categories unrelated to police 
 			 * from other incident types
 			 */
-			mainProgramView.userCallCategorySelection.removeAllItems();
+			mainProgramView.getUserCallCategorySelection().removeAllItems();
 
 			/**
 			 * Create a array of the string type called
@@ -120,7 +120,7 @@ public class PoliceRadioButtonListener implements ActionListener
 			 */
 			for (int index = 0; index < policeRelatedCallCategoryCalls.length; index++)
 			{
-				mainProgramView.userCallCategorySelection
+				mainProgramView.getUserCallCategorySelection()
 						.addItem(policeRelatedCallCategoryCalls[index]);
 			}
 

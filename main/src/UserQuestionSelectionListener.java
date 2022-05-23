@@ -66,12 +66,12 @@ public class UserQuestionSelectionListener implements ItemListener
 			if (userQuestionSelection.getSelectedItem().toString()
 					.contains("community"))
 			{
-				mainProgramView.userCommunitySelection.setEnabled(true);
+				mainProgramView.getUserCommunitySelection().setEnabled(true);
 			}
 
 			else
 			{
-				mainProgramView.userCommunitySelection.setEnabled(false);
+				mainProgramView.getUserCommunitySelection().setEnabled(false);
 			}
 
 			/**
@@ -83,7 +83,7 @@ public class UserQuestionSelectionListener implements ItemListener
 			 * filled or see it because the new question may not be related to a
 			 * community
 			 */
-			mainProgramView.userCommunitySelection.setSelectedIndex(0);
+			mainProgramView.getUserCommunitySelection().setSelectedIndex(0);
 
 			/**
 			 * If the question selected by the user contains the word call
@@ -96,12 +96,12 @@ public class UserQuestionSelectionListener implements ItemListener
 			if (userQuestionSelection.getSelectedItem().toString()
 					.contains("call category"))
 			{
-				mainProgramView.userCallCategorySelection.setEnabled(true);
+				mainProgramView.getUserCallCategorySelection().setEnabled(true);
 			}
 
 			else
 			{
-				mainProgramView.userCallCategorySelection.setEnabled(false);
+				mainProgramView.getUserCallCategorySelection().setEnabled(false);
 			}
 
 			/**
@@ -113,7 +113,7 @@ public class UserQuestionSelectionListener implements ItemListener
 			 * be filled or see it because the new question may not be related
 			 * to a call category
 			 */
-			mainProgramView.userCallCategorySelection.setSelectedIndex(0);
+			mainProgramView.getUserCallCategorySelection().setSelectedIndex(0);
 
 			
 			/**
@@ -127,12 +127,12 @@ public class UserQuestionSelectionListener implements ItemListener
 			if (userQuestionSelection.getSelectedItem().toString()
 					.contains("month"))
 			{
-				mainProgramView.userMonthSelection.setEnabled(true);
+				mainProgramView.getUserMonthSelection().setEnabled(true);
 			}
 			
 			else
 			{
-				mainProgramView.userMonthSelection.setEnabled(false);
+				mainProgramView.getUserMonthSelection().setEnabled(false);
 			}
 			
 			/**
@@ -144,7 +144,7 @@ public class UserQuestionSelectionListener implements ItemListener
 			 * be filled or see it because the new question may not be related
 			 * to a month
 			 */
-			mainProgramView.userMonthSelection.setSelectedIndex(0);
+			mainProgramView.getUserMonthSelection().setSelectedIndex(0);
 
 			
 			/**
@@ -158,11 +158,11 @@ public class UserQuestionSelectionListener implements ItemListener
 			if (userQuestionSelection.getSelectedItem().toString()
 					.contains("year"))
 			{
-				mainProgramView.userYearSelection.setEnabled(true);
+				mainProgramView.getUserYearSelection().setEnabled(true);
 			}
 			else
 			{
-				mainProgramView.userYearSelection.setEnabled(false);
+				mainProgramView.getUserYearSelection().setEnabled(false);
 			}
 
 			/**
@@ -174,7 +174,7 @@ public class UserQuestionSelectionListener implements ItemListener
 			 * be filled or see it because the new question may not be related
 			 * to a year
 			 */
-			mainProgramView.userYearSelection.setSelectedIndex(0);
+			mainProgramView.getUserYearSelection().setSelectedIndex(0);
 		}
 	}
 }

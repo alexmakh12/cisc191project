@@ -70,32 +70,44 @@ public class UnitedStatesStates
 
 				// Set the next line read to be state
 				state = scanner.nextLine();
-				/**
-				 * Set indexOfFirstQuote to be the index of the first quote
-				 */
-				int indexOfFirstQuote = state.indexOf("\"", 0);
 
 				/**
-				 * Set indexOfSecondQuote to be the index of the comma
+				 * Check if the line contains a comma
+				 * 
+				 * Note : All of the lines that have states contain a comma at
+				 * the end of the state line.
 				 */
-				int indexOfSecondQuote = state.indexOf(",", 0);
+				if (state.contains(","))
+				{
+					/**
+					 * Set indexOfFirstQuote to be the index of the first quote
+					 */
+					int indexOfFirstQuote = state.indexOf("\"", 0);
 
-				/**
-				 * Using the substring method set state equal to the string
-				 * between the index
-				 */
-				state = state.substring(indexOfFirstQuote, indexOfSecondQuote);
+					/**
+					 * Set indexOfSecondQuote to be the index of the comma
+					 */
+					int indexOfSecondQuote = state.indexOf(",",
+							indexOfFirstQuote);
 
-				/**
-				 * Remove any quotes around the string
-				 */
-				state = state.replace("\"", "");
+					/**
+					 * Using the substring method set state equal to the string
+					 * between the index
+					 */
+					state = state.substring(indexOfFirstQuote,
+							indexOfSecondQuote);
 
-				/**
-				 * Add the state to the array list and move onto the next
-				 * line
-				 */
-				allStatesInTheUnitedStates.add(state);
+					/**
+					 * Remove any quotes around the string
+					 */
+					state = state.replace("\"", "");
+
+					/**
+					 * Add the state to the array list and move onto the next
+					 * line
+					 */
+					allStatesInTheUnitedStates.add(state);
+				}
 
 			}
 		}

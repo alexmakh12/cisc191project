@@ -15,7 +15,7 @@ import javax.swing.JRadioButton;
  *         References:
  *         <<add more references here>>
  * 
- *         Version/date: 05/21/2022 V4.0
+ *         Version/date: 05/22/2022 V5.0
  * 
  *         Responsibilities of class:
  *         - Creates a fire radio button listener implements an ActionListener
@@ -56,7 +56,7 @@ public class FireRadioButtonListener implements ActionListener
 			 * enabled the userQuestionSelection JComboBox (assuming you have
 			 * not answered the cities JComboBox)
 			 */
-			mainProgramView.userQuestionSelection.setEnabled(true);
+			mainProgramView.getUserQuestionSelection().setEnabled(true);
 
 			/**
 			 * Remove all items from the user question selection JComboBox. We
@@ -64,7 +64,7 @@ public class FireRadioButtonListener implements ActionListener
 			 * want the previous incident type questions to be populated in the
 			 * JComboBox
 			 */
-			mainProgramView.userQuestionSelection.removeAllItems();
+			mainProgramView.getUserQuestionSelection().removeAllItems();
 
 			/**
 			 * setSelectedIndex of userMonthSelection,userYearSelection and
@@ -77,9 +77,9 @@ public class FireRadioButtonListener implements ActionListener
 			 * and that question may not need those selected fields. So we will
 			 * have the answer the questions again.
 			 */
-			mainProgramView.userMonthSelection.setSelectedIndex(0);
-			mainProgramView.userYearSelection.setSelectedIndex(0);
-			mainProgramView.userCommunitySelection.setSelectedIndex(0);
+			mainProgramView.getUserMonthSelection().setSelectedIndex(0);
+			mainProgramView.getUserYearSelection().setSelectedIndex(0);
+			mainProgramView.getUserCommunitySelection().setSelectedIndex(0);
 
 			/**
 			 * Create a array of the string type called fireQuestions that has
@@ -96,7 +96,7 @@ public class FireRadioButtonListener implements ActionListener
 			 */
 			for (int index = 0; index < fireQuestions.length; index++)
 			{
-				mainProgramView.userQuestionSelection
+				mainProgramView.getUserQuestionSelection()
 						.addItem(fireQuestions[index]);
 			}
 
@@ -104,7 +104,7 @@ public class FireRadioButtonListener implements ActionListener
 			 * Remove any call categories unrelated to fire
 			 * from other incident types
 			 */
-			mainProgramView.userCallCategorySelection.removeAllItems();
+			mainProgramView.getUserCallCategorySelection().removeAllItems();
 
 			/**
 			 * Create a array of the string type called fireRelatedCallCategorys
@@ -121,7 +121,7 @@ public class FireRadioButtonListener implements ActionListener
 			 */
 			for (int index = 0; index < fireRelatedCallCategorys.length; index++)
 			{
-				mainProgramView.userCallCategorySelection
+				mainProgramView.getUserCallCategorySelection()
 						.addItem(fireRelatedCallCategorys[index]);
 			}
 

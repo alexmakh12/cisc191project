@@ -61,7 +61,7 @@ public class UserStateSlectionListener implements ItemListener
 			 * We are doing this so that the user can continue
 			 * in the program and select a city.
 			 */
-			mainProgramView.userCitySelection.setEnabled(true);
+			mainProgramView.getUserCitySelection().setEnabled(true);
 			System.out.println(userStateSelection.getSelectedItem());
 
 			/**
@@ -73,7 +73,7 @@ public class UserStateSlectionListener implements ItemListener
 			 * is now parsing data from a new state (NOTE : hoping to implement
 			 * so that its not only just California and San Diego)
 			 */
-			mainProgramView.resetCaseBasedOffScenario = 2;
+			mainProgramView.setResetCaseBasedOffScenario(2);
 
 			/**
 			 * Call the resetProgram method from the mainProgram view using the
@@ -84,7 +84,7 @@ public class UserStateSlectionListener implements ItemListener
 			/**
 			 * Check if selected California is selected
 			 */
-			if (mainProgramView.userStateSelection.getSelectedItem().toString()
+			if (mainProgramView.getUserStateSelection().getSelectedItem().toString()
 					.contains("California"))
 			{
 
@@ -93,13 +93,13 @@ public class UserStateSlectionListener implements ItemListener
 				 * user CitySeleciton and add the correlated cities of
 				 * California
 				 */
-				mainProgramView.userCitySelection.removeAllItems();
+				mainProgramView.getUserCitySelection().removeAllItems();
 
 				String[] sanDiegoCities = { "Select a city", "San Diego", };
 
 				for (int index = 0; index < sanDiegoCities.length; index++)
 				{
-					mainProgramView.userCitySelection
+					mainProgramView.getUserCitySelection()
 							.addItem(sanDiegoCities[index]);
 				}
 
@@ -107,8 +107,8 @@ public class UserStateSlectionListener implements ItemListener
 				 * Set the group of radioButtons to be disabled (not sure why
 				 * they are enabling)
 				 */
-				mainProgramView.fireIncidentTypeRadioButton.setEnabled(false);
-				mainProgramView.policeIncidentRadioTypeButton.setEnabled(false);
+				mainProgramView.getFireIncidentTypeRadioButton().setEnabled(false);
+				mainProgramView.getPoliceIncidentRadioTypeButton().setEnabled(false);
 			}
 
 			/**
@@ -121,12 +121,12 @@ public class UserStateSlectionListener implements ItemListener
 			 */
 			else
 			{
-				mainProgramView.userCitySelection.removeAllItems();
-				mainProgramView.userCitySelection.addItem("Select a city");
-				mainProgramView.groupOfIncidentTypeRadioButtons
+				mainProgramView.getUserCitySelection().removeAllItems();
+				mainProgramView.getUserCitySelection().addItem("Select a city");
+				mainProgramView.getGroupOfIncidentTypeRadioButtons()
 						.clearSelection();
-				mainProgramView.fireIncidentTypeRadioButton.setEnabled(false);
-				mainProgramView.policeIncidentRadioTypeButton.setEnabled(false);
+				mainProgramView.getFireIncidentTypeRadioButton().setEnabled(false);
+				mainProgramView.getPoliceIncidentRadioTypeButton().setEnabled(false);
 			}
 
 		}

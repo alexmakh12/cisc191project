@@ -62,8 +62,8 @@ public class UserCitySelectionListener implements ItemListener
 			 * in the program and select a question related to the incident type
 			 * the user picked
 			 */
-			mainProgramView.fireIncidentTypeRadioButton.setEnabled(true);
-			mainProgramView.policeIncidentRadioTypeButton.setEnabled(true);
+			mainProgramView.getFireIncidentTypeRadioButton().setEnabled(true);
+			mainProgramView.getPoliceIncidentRadioTypeButton().setEnabled(true);
 
 			/**
 			 * Currently commented out since the listener for this button is not

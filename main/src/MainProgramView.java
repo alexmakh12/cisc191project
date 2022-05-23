@@ -27,11 +27,11 @@ import javax.swing.JRadioButton;
  * 
  *         https://www.youtube.com/watch?v=O4KGYGQvHmw&ab_channel=AlexLee
  * 
- *   
+ * 
  *         https://stackoverflow.com/questions/1903252/extract-integer-part-in-string
  * 
  *         https://stackoverflow.com/questions/10372862/java-string-remove-all-non-numeric-characters-but-keep-the-decimal-separator
- *         
+ * 
  *         https://stackoverflow.com/questions/1291704/how-do-i-populate-a-jcombobox-with-an-arraylist
  * 
  *         Version/date: 05/21/2022 V6.0
@@ -58,28 +58,28 @@ public class MainProgramView extends JFrame
 	private JLabel creatorSignature;
 
 	// MainProgramView HAS-A userStateSelection
-	JComboBox userStateSelection;
+	private JComboBox userStateSelection;
 
 	// MainProgramView HAS-A userCitySelection
-	JComboBox userCitySelection;
+	private JComboBox userCitySelection;
 
 	// MainProgramView HAS-A userQuestionSeleciton
-	JComboBox userQuestionSelection;
+	private JComboBox userQuestionSelection;
 
 	// MainProgramView HAS-A userCommunitySelection
-	JComboBox userCommunitySelection;
+	private JComboBox userCommunitySelection;
 
 	// MainProgramView HAS-A userCallCategorySelection
-	JComboBox userCallCategorySelection;
+	private JComboBox userCallCategorySelection;
 
 	// MainProgramView HAS-A userYearSeleciton
-	JComboBox userYearSelection;
+	private JComboBox userYearSelection;
 
 	// MainProgramView HAS-A userMonthSelection
-	JComboBox userMonthSelection;
+	private JComboBox userMonthSelection;
 
 	// MainProgramView HAS-A group
-	ButtonGroup groupOfIncidentTypeRadioButtons;
+	private ButtonGroup groupOfIncidentTypeRadioButtons;
 
 	// MainProgramView HAS-A panelContainer
 	private JPanel panelContainer;
@@ -111,13 +111,13 @@ public class MainProgramView extends JFrame
 	private JPanel messegePanel;
 
 	// MainProgramView fireIncidetTypeRadioButton
-	JRadioButton fireIncidentTypeRadioButton;
+	private JRadioButton fireIncidentTypeRadioButton;
 
 	// MainProgramView policeIncidentRadioTypeButton
-	JRadioButton policeIncidentRadioTypeButton;
+	private JRadioButton policeIncidentRadioTypeButton;
 
 	// MainProgramView policeAndFireIncidenTypeRadioButton
-	JRadioButton policeAndFireIncidenTypeRadioButton;
+	private JRadioButton policeAndFireIncidenTypeRadioButton;
 
 	// MainProgramView getResultsButton
 	private JButton getResultsButton;
@@ -150,17 +150,17 @@ public class MainProgramView extends JFrame
 			"92101 (Downtown)", "92108 (Mission Valley)",
 			" 92107 (Ocean Beach)" };
 
-	int caseBasedOffOfSelection;
+	private int caseBasedOffOfSelection;
 
-	int resetCaseBasedOffScenario;
+	private int resetCaseBasedOffScenario;
 
 	/**
 	 * Program view constructor that creates a program view
 	 */
 	public MainProgramView()
 	{
-		IncidentSortingMethods
-				.readAndLoadCrimeIncidentData("main/ARJISPublicCrime030922.csv");
+		IncidentSortingMethods.readAndLoadCrimeIncidentData(
+				"main/ARJISPublicCrime030922.csv");
 		IncidentSortingMethods
 				.readAndLoadFireIncidentData("main/fdIncidents2021DataSD.csv");
 		// Set the of the program
@@ -230,9 +230,10 @@ public class MainProgramView extends JFrame
 		 * JComboBox
 		 */
 		userStateSelection = new JComboBox(UnitedStatesStates.readWebsite(
-				"https://gist.githubusercontent.com/iamjason/8f8f4bc00c13de86bcad/raw/338c1c9faafde0cd274d531e657a262df1dd5963/us-states-array").toArray());
-		userStateSelection.addItemListener(
-				new UserStateSlectionListener(userStateSelection, this));
+				"https://gist.githubusercontent.com/iamjason/8f8f4bc00c13de86bcad/raw/338c1c9faafde0cd274d531e657a262df1dd5963/us-states-array")
+				.toArray());
+		getUserStateSelection().addItemListener(
+				new UserStateSlectionListener(getUserStateSelection(), this));
 
 		/**
 		 * Create a new JComboBox called userCitySelection by passing the
@@ -243,9 +244,9 @@ public class MainProgramView extends JFrame
 		 * JComboBox
 		 */
 		userCitySelection = new JComboBox(cities);
-		userCitySelection.addItemListener(
-				new UserCitySelectionListener(userCitySelection, this));
-		userCitySelection.setEnabled(false);
+		getUserCitySelection().addItemListener(
+				new UserCitySelectionListener(getUserCitySelection(), this));
+		getUserCitySelection().setEnabled(false);
 
 		/**
 		 * Create a new JPanel called secondPanel
@@ -254,8 +255,8 @@ public class MainProgramView extends JFrame
 		 * it holds the userCitySelectionComboBox and userStateSelectionComboBox
 		 */
 		secondPanel = new JPanel();
-		secondPanel.add(userStateSelection);
-		secondPanel.add(userCitySelection);
+		secondPanel.add(getUserStateSelection());
+		secondPanel.add(getUserCitySelection());
 
 		/**
 		 * Create a new JPanel called thirdPanel
@@ -277,9 +278,10 @@ public class MainProgramView extends JFrame
 		 * they choose a city
 		 */
 		fireIncidentTypeRadioButton = new JRadioButton("Fire");
-		fireIncidentTypeRadioButton.addActionListener(
-				new FireRadioButtonListener(fireIncidentTypeRadioButton, this));
-		fireIncidentTypeRadioButton.setEnabled(false);
+		getFireIncidentTypeRadioButton().addActionListener(
+				new FireRadioButtonListener(getFireIncidentTypeRadioButton(),
+						this));
+		getFireIncidentTypeRadioButton().setEnabled(false);
 
 		/**
 		 * Create a new JRadioButton named Police
@@ -292,10 +294,10 @@ public class MainProgramView extends JFrame
 		 * they choose a city
 		 */
 		policeIncidentRadioTypeButton = new JRadioButton("Police");
-		policeIncidentRadioTypeButton.addActionListener(
-				new PoliceRadioButtonListener(policeIncidentRadioTypeButton,
-						this));
-		policeIncidentRadioTypeButton.setEnabled(false);
+		getPoliceIncidentRadioTypeButton()
+				.addActionListener(new PoliceRadioButtonListener(
+						getPoliceIncidentRadioTypeButton(), this));
+		getPoliceIncidentRadioTypeButton().setEnabled(false);
 
 		/**
 		 * Create a new JRadioButton named Police
@@ -318,10 +320,12 @@ public class MainProgramView extends JFrame
 		 * This is what allows only one radio button to be selected at time
 		 */
 		groupOfIncidentTypeRadioButtons = new ButtonGroup();
-		groupOfIncidentTypeRadioButtons
+		getGroupOfIncidentTypeRadioButtons()
 				.add(policeAndFireIncidenTypeRadioButton);
-		groupOfIncidentTypeRadioButtons.add(fireIncidentTypeRadioButton);
-		groupOfIncidentTypeRadioButtons.add(policeIncidentRadioTypeButton);
+		getGroupOfIncidentTypeRadioButtons()
+				.add(getFireIncidentTypeRadioButton());
+		getGroupOfIncidentTypeRadioButtons()
+				.add(getPoliceIncidentRadioTypeButton());
 
 		/**
 		 * Create a new JPanel called fourthPanel
@@ -332,8 +336,8 @@ public class MainProgramView extends JFrame
 		 * policeAndFireIncidentTypeRadioButton
 		 */
 		fourthPanel = new JPanel();
-		fourthPanel.add(fireIncidentTypeRadioButton);
-		fourthPanel.add(policeIncidentRadioTypeButton);
+		fourthPanel.add(getFireIncidentTypeRadioButton());
+		fourthPanel.add(getPoliceIncidentRadioTypeButton());
 		fourthPanel.add(policeAndFireIncidenTypeRadioButton);
 
 		/**
@@ -350,9 +354,10 @@ public class MainProgramView extends JFrame
 		 * user to click it until they select an incident type
 		 */
 		userQuestionSelection = new JComboBox(defaultUserQuesiton);
-		userQuestionSelection.addItemListener(
-				new UserQuestionSelectionListener(userQuestionSelection, this));
-		userQuestionSelection.setEnabled(false);
+		getUserQuestionSelection().addItemListener(
+				new UserQuestionSelectionListener(getUserQuestionSelection(),
+						this));
+		getUserQuestionSelection().setEnabled(false);
 
 		/**
 		 * Create a newJPanel called fifthPanel
@@ -361,7 +366,7 @@ public class MainProgramView extends JFrame
 		 * holds the userQuestionsSelection JComboBox
 		 */
 		fifthPanel = new JPanel();
-		fifthPanel.add(userQuestionSelection);
+		fifthPanel.add(getUserQuestionSelection());
 
 		/**
 		 * Create a JComboBox called userCommunitySeleciton that is passed
@@ -376,10 +381,10 @@ public class MainProgramView extends JFrame
 		 * anything within the JComboBox unless it is related the question
 		 */
 		userCommunitySelection = new JComboBox(community);
-		userCommunitySelection.addItemListener(
-				new UserCommunitySelectionListener(userCommunitySelection,
+		getUserCommunitySelection().addItemListener(
+				new UserCommunitySelectionListener(getUserCommunitySelection(),
 						this));
-		userCommunitySelection.setEnabled(false);
+		getUserCommunitySelection().setEnabled(false);
 
 		/**
 		 * Create a JComboBox called userCallCategorySelection that is passed
@@ -395,7 +400,7 @@ public class MainProgramView extends JFrame
 		 * it is related the question
 		 */
 		userCallCategorySelection = new JComboBox(callCategory);
-		userCallCategorySelection.setEnabled(false);
+		getUserCallCategorySelection().setEnabled(false);
 		// ADD A CallCategorySelectionListener
 
 		/**
@@ -413,9 +418,9 @@ public class MainProgramView extends JFrame
 		 * it is related the question
 		 */
 		userMonthSelection = new JComboBox(months);
-		userMonthSelection.addItemListener(
-				new UserMonthSelectionListener(userMonthSelection, this));
-		userMonthSelection.setEnabled(false);
+		getUserMonthSelection().addItemListener(
+				new UserMonthSelectionListener(getUserMonthSelection(), this));
+		getUserMonthSelection().setEnabled(false);
 
 		/**
 		 * Create a JComboBox called userYearSelection that is passed
@@ -431,9 +436,9 @@ public class MainProgramView extends JFrame
 		 * it is related the question
 		 */
 		userYearSelection = new JComboBox(years);
-		userYearSelection.addItemListener(
-				new UserYearSelectionListener(userYearSelection, this));
-		userYearSelection.setEnabled(false);
+		getUserYearSelection().addItemListener(
+				new UserYearSelectionListener(getUserYearSelection(), this));
+		getUserYearSelection().setEnabled(false);
 
 		/**
 		 * Create a newJPanel called sixthPanel
@@ -443,10 +448,10 @@ public class MainProgramView extends JFrame
 		 * userCallCategorySelection and userMonthSeleciton
 		 */
 		sixthPanel = new JPanel();
-		sixthPanel.add(userCommunitySelection);
-		sixthPanel.add(userCallCategorySelection);
-		sixthPanel.add(userMonthSelection);
-		sixthPanel.add(userYearSelection);
+		sixthPanel.add(getUserCommunitySelection());
+		sixthPanel.add(getUserCallCategorySelection());
+		sixthPanel.add(getUserMonthSelection());
+		sixthPanel.add(getUserYearSelection());
 
 		/**
 		 * Create a JButton called getResultsButton
@@ -539,56 +544,56 @@ public class MainProgramView extends JFrame
 	 */
 	public void resetProgram()
 	{
-		switch (resetCaseBasedOffScenario)
+		switch (getResetCaseBasedOffScenario())
 		{
 			// Case for if the reset button is click
 			case 1:
 				// Set the userStateSelciton to be 0th index
-				userStateSelection.setSelectedIndex(0);
+				getUserStateSelection().setSelectedIndex(0);
 				/**
 				 * Set the userCitySelection to be disabled and the 0th index
 				 * which is the default city selection instructions
 				 */
-				userCitySelection.setEnabled(false);
-				userCitySelection.setSelectedIndex(0);
+				getUserCitySelection().setEnabled(false);
+				getUserCitySelection().setSelectedIndex(0);
 				/**
 				 * Clear the groupOfIncidentTypeRadioButtons so that none are
 				 * selected
 				 */
-				groupOfIncidentTypeRadioButtons.clearSelection();
-				fireIncidentTypeRadioButton.setEnabled(false);
-				policeIncidentRadioTypeButton.setEnabled(false);
+				getGroupOfIncidentTypeRadioButtons().clearSelection();
+				getFireIncidentTypeRadioButton().setEnabled(false);
+				getPoliceIncidentRadioTypeButton().setEnabled(false);
 				/**
 				 * Set the userQuestionSelection to be disabled and the 0th
 				 * index which is the default question selection instructions
 				 */
-				userQuestionSelection.setEnabled(false);
-				userQuestionSelection.setSelectedIndex(0);
+				getUserQuestionSelection().setEnabled(false);
+				getUserQuestionSelection().setSelectedIndex(0);
 				/**
 				 * Set the userCommunitySelection to be disabled and the 0th
 				 * index which is the default community selection instructions
 				 */
-				userCommunitySelection.setEnabled(false);
-				userCommunitySelection.setSelectedIndex(0);
+				getUserCommunitySelection().setEnabled(false);
+				getUserCommunitySelection().setSelectedIndex(0);
 				/**
 				 * Set the userYearSelection to be disabled and the 0th
 				 * index which is the default year selection instructions
 				 */
-				userYearSelection.setEnabled(false);
-				userYearSelection.setSelectedIndex(0);
+				getUserYearSelection().setEnabled(false);
+				getUserYearSelection().setSelectedIndex(0);
 				/**
 				 * Set the userYearSelection to be disabled and the 0th
 				 * index which is the default month selection instructions
 				 */
-				userMonthSelection.setEnabled(false);
-				userMonthSelection.setSelectedIndex(0);
+				getUserMonthSelection().setEnabled(false);
+				getUserMonthSelection().setSelectedIndex(0);
 				/**
 				 * Set the userCallCategorySelection to be disabled and the 0th
 				 * index which is the default call category selection
 				 * instructions
 				 */
-				userCallCategorySelection.setEnabled(false);
-				userCallCategorySelection.setSelectedIndex(0);
+				getUserCallCategorySelection().setEnabled(false);
+				getUserCallCategorySelection().setSelectedIndex(0);
 				/**
 				 * Disabled the getResultsButton
 				 */
@@ -601,45 +606,45 @@ public class MainProgramView extends JFrame
 				 * Set the userCitySelection to be the 0th index
 				 * which is the default city selection instructions
 				 */
-				userCitySelection.setSelectedIndex(0);
+				getUserCitySelection().setSelectedIndex(0);
 				/**
 				 * Clear the groupOfIncidentTypeRadioButtons so that none are
 				 * selected
 				 */
-				groupOfIncidentTypeRadioButtons.clearSelection();
-				fireIncidentTypeRadioButton.setEnabled(false);
-				policeIncidentRadioTypeButton.setEnabled(false);
+				getGroupOfIncidentTypeRadioButtons().clearSelection();
+				getFireIncidentTypeRadioButton().setEnabled(false);
+				getPoliceIncidentRadioTypeButton().setEnabled(false);
 				/**
 				 * Set the userQuestionSelection to be disabled and the 0th
 				 * index which is the default question selection instructions
 				 */
-				userQuestionSelection.setEnabled(false);
-				userQuestionSelection.setSelectedIndex(0);
+				getUserQuestionSelection().setEnabled(false);
+				getUserQuestionSelection().setSelectedIndex(0);
 				/**
 				 * Set the userCommunitySelection to be disabled and the 0th
 				 * index which is the default community selection instructions
 				 */
-				userCommunitySelection.setEnabled(false);
-				userCommunitySelection.setSelectedIndex(0);
+				getUserCommunitySelection().setEnabled(false);
+				getUserCommunitySelection().setSelectedIndex(0);
 				/**
 				 * Set the userYearSelection to be disabled and the 0th
 				 * index which is the default year selection instructions
 				 */
-				userYearSelection.setEnabled(false);
-				userYearSelection.setSelectedIndex(0);
+				getUserYearSelection().setEnabled(false);
+				getUserYearSelection().setSelectedIndex(0);
 				/**
 				 * Set the userYearSelection to be disabled and the 0th
 				 * index which is the default month selection instructions
 				 */
-				userMonthSelection.setEnabled(false);
-				userMonthSelection.setSelectedIndex(0);
+				getUserMonthSelection().setEnabled(false);
+				getUserMonthSelection().setSelectedIndex(0);
 				/**
 				 * Set the userCallCategorySelection to be disabled and the 0th
 				 * index which is the default call category selection
 				 * instructions
 				 */
-				userCallCategorySelection.setEnabled(false);
-				userCallCategorySelection.setSelectedIndex(0);
+				getUserCallCategorySelection().setEnabled(false);
+				getUserCallCategorySelection().setSelectedIndex(0);
 				/**
 				 * Disabled the getResultsButton
 				 */
@@ -661,7 +666,7 @@ public class MainProgramView extends JFrame
 		 * Create a string called inputCommunity and it assign the selected
 		 * community by the user and format it to a string
 		 */
-		String inputCommunity = userCommunitySelection.getSelectedItem()
+		String inputCommunity = getUserCommunitySelection().getSelectedItem()
 				.toString();
 		/**
 		 * Create a string called inputCommunityWithoutLetters which is the
@@ -683,13 +688,14 @@ public class MainProgramView extends JFrame
 		 * Create a string called inputYear and it assign the selected year
 		 * by the user and format it to a string
 		 */
-		String inputYear = userYearSelection.getSelectedItem().toString();
+		String inputYear = getUserYearSelection().getSelectedItem().toString();
 
 		/**
 		 * Create a string called inputMonth and it assign the selected month
 		 * by the user and format it to a string
 		 */
-		String inputMonth = userMonthSelection.getSelectedItem().toString();
+		String inputMonth = getUserMonthSelection().getSelectedItem()
+				.toString();
 
 		/**
 		 * Create a string called inputMonthWithoutLetters which is the
@@ -710,8 +716,8 @@ public class MainProgramView extends JFrame
 		 * Create a string called inputCallCategory and it assign the
 		 * selected callCategory by the user and format it to a string
 		 */
-		String inputCallCategory = userCallCategorySelection.getSelectedItem()
-				.toString();
+		String inputCallCategory = getUserCallCategorySelection()
+				.getSelectedItem().toString();
 
 		// Create a new messagePanel
 		messegePanel = new JPanel();
@@ -839,12 +845,16 @@ public class MainProgramView extends JFrame
 		 * If so then set the case BasedOffOfSelection to be 1 (for when the
 		 * getResults button method is called) and enable the getResults Button
 		 */
-		if (policeIncidentRadioTypeButton.isSelected() && userCommunitySelection
-				.getSelectedItem() != userCommunitySelection.getItemAt(0)
-				&& userMonthSelection.getSelectedItem() != userMonthSelection
-						.getItemAt(0)
-				&& userYearSelection.getSelectedItem() != userYearSelection
-						.getItemAt(0))
+		if (getPoliceIncidentRadioTypeButton().isSelected()
+				&& getUserCommunitySelection()
+						.getSelectedItem() != getUserCommunitySelection()
+								.getItemAt(0)
+				&& getUserMonthSelection()
+						.getSelectedItem() != getUserMonthSelection()
+								.getItemAt(0)
+				&& getUserYearSelection()
+						.getSelectedItem() != getUserYearSelection()
+								.getItemAt(0))
 		{
 			/**
 			 * Set the case BasedOffOfSelection to be 1 (for when the getResults
@@ -866,14 +876,16 @@ public class MainProgramView extends JFrame
 		 * If so then set the case BasedOffOfSelection to be 2 (for when the
 		 * getResults button method is called) and enable the getResults Button
 		 */
-		else if (fireIncidentTypeRadioButton.isSelected()
-				&& userCommunitySelection
-						.getSelectedItem() != userCommunitySelection
+		else if (getFireIncidentTypeRadioButton().isSelected()
+				&& getUserCommunitySelection()
+						.getSelectedItem() != getUserCommunitySelection()
 								.getItemAt(0)
-				&& userMonthSelection.getSelectedItem() != userMonthSelection
-						.getItemAt(0)
-				&& userYearSelection.getSelectedItem() != userYearSelection
-						.getItemAt(0))
+				&& getUserMonthSelection()
+						.getSelectedItem() != getUserMonthSelection()
+								.getItemAt(0)
+				&& getUserYearSelection()
+						.getSelectedItem() != getUserYearSelection()
+								.getItemAt(0))
 		{
 			caseBasedOffOfSelection = 2;
 			getResultsButton.setEnabled(true);
@@ -891,11 +903,12 @@ public class MainProgramView extends JFrame
 		 * If so then set the case BasedOffOfSelection to be 3 (for when the
 		 * getResults button method is called) and enable the getResults Button
 		 */
-		else if (fireIncidentTypeRadioButton.isSelected()
-				&& userYearSelection.getSelectedItem() != userYearSelection
-						.getItemAt(0)
-				&& userCallCategorySelection
-						.getSelectedItem() != userCallCategorySelection)
+		else if (getFireIncidentTypeRadioButton().isSelected()
+				&& getUserYearSelection()
+						.getSelectedItem() != getUserYearSelection()
+								.getItemAt(0)
+				&& getUserCallCategorySelection()
+						.getSelectedItem() != getUserCallCategorySelection())
 		{
 			caseBasedOffOfSelection = 3;
 			getResultsButton.setEnabled(true);
@@ -922,5 +935,132 @@ public class MainProgramView extends JFrame
 							+ e.toString());
 		}
 
+	}
+
+	/**
+	 * Note : These getter and setter methods are created so that the instance
+	 * variables can be accessed outside of this class since they are all
+	 * private.
+	 */
+
+	/**
+	 * Getter method that returns :
+	 * 
+	 * @return policeIncidentRadioTypeButton
+	 */
+	public JRadioButton getPoliceIncidentRadioTypeButton()
+	{
+		return policeIncidentRadioTypeButton;
+	}
+
+	/**
+	 * Getter method that returns :
+	 * 
+	 * @returnfireIncidentTypeRadioButton
+	 */
+	public JRadioButton getFireIncidentTypeRadioButton()
+	{
+		return fireIncidentTypeRadioButton;
+	}
+
+	/**
+	 * Getter method that returns:
+	 * 
+	 * @return userQuestionSelection
+	 */
+	public JComboBox getUserQuestionSelection()
+	{
+		return userQuestionSelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return userMonthSelection
+	 */
+	public JComboBox getUserMonthSelection()
+	{
+		return userMonthSelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return userYearSelection
+	 */
+	public JComboBox getUserYearSelection()
+	{
+		return userYearSelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return userCommunitySelection
+	 */
+	public JComboBox getUserCommunitySelection()
+	{
+		return userCommunitySelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return userCallCategorySelection
+	 */
+	public JComboBox getUserCallCategorySelection()
+	{
+		return userCallCategorySelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return userCitySelection
+	 */
+	public JComboBox getUserCitySelection()
+	{
+		return userCitySelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return userStateSelection
+	 */
+	public JComboBox getUserStateSelection()
+	{
+		return userStateSelection;
+	}
+
+	/**
+	 * Getter method that returns
+	 * 
+	 * @return groupOfIncidentTypeRadioButtons
+	 */
+	public ButtonGroup getGroupOfIncidentTypeRadioButtons()
+	{
+		return groupOfIncidentTypeRadioButtons;
+	}
+
+	/**
+	 * Getter method the returns
+	 * 
+	 * @return resetCaseBasedOffScenario
+	 */
+	public int getResetCaseBasedOffScenario()
+	{
+		return resetCaseBasedOffScenario;
+	}
+
+	/**
+	 * Setter method that sets the resetCaseBasedOffScenario variable to the
+	 * parameter passed to the method
+	 * 
+	 * @param resetCaseBasedOffScenario
+	 */
+	public void setResetCaseBasedOffScenario(int resetCaseBasedOffScenario)
+	{
+		this.resetCaseBasedOffScenario = resetCaseBasedOffScenario;
 	}
 }
